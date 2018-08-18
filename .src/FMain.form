@@ -1,0 +1,147 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,146,95)
+  Icon = Picture["icono1x2.png"]
+  { GridViewMBetFutbol GridView
+    MoveScaled(34,64,108,20)
+  }
+  { TextAreaMbetButbol TextArea
+    MoveScaled(1,57,31,29)
+  }
+  { ButtonLeerDatosMBETFutbol Button
+    MoveScaled(39,56,15,7)
+    Text = ("Leer")
+    Picture = Picture["icon:/32/make"]
+  }
+  { ButtonCombinar Button
+    MoveScaled(33,87,37,6)
+    Text = ("Sportium - MBET al \nportapapeles")
+    Picture = Picture["IconoPequeñoSportium.png"]
+  }
+  { ButtonLimpiarMbetDatos Button
+    MoveScaled(112,55,28,8)
+    Text = ("Borrar datos") & "..."
+    Picture = Picture["icon:/48/trash"]
+  }
+  { PictureBox2 PictureBox
+    MoveScaled(4,48,26,8)
+    Picture = Picture["mbet.jpg"]
+    Stretch = True
+  }
+  { TabStrip1 TabStrip
+    MoveScaled(1,6,142,41)
+    Count = 3
+    Index = 0
+    Text = ("Sportium")
+    Picture = Picture["IconoPequeñoSportium.png"]
+    { PictureBox1 PictureBox
+      MoveScaled(0,0,38,10)
+      Picture = Picture["sportium.jpg"]
+      Stretch = True
+    }
+    { TextAreaSportiumFutbol TextArea
+      MoveScaled(0,10,29,25)
+    }
+    { GridViewSportiumFutbol GridView
+      MoveScaled(30,12,109,22)
+    }
+    { ButtonLeerDatosSportium Button
+      MoveScaled(44,2,15,7)
+      Text = ("Leer")
+      Picture = Picture["icon:/32/make"]
+    }
+    { ButtonLimpiarSportium Button
+      MoveScaled(110,2,28,8)
+      Text = ("Borrar datos") & "..."
+      Picture = Picture["icon:/48/trash"]
+    }
+    { ButtonGridLimpiarWillianhill3 Button
+      MoveScaled(79,2,20,8)
+      Text = ("Regilla")
+      Picture = Picture["icon:/48/clear"]
+    }
+    Index = 1
+    Text = ("WillianHill")
+    Picture = Picture["IconoPequeñoWillianHIll.png"]
+    { PictureBox3 PictureBox
+      MoveScaled(0,0,38,10)
+      Picture = Picture["willianhill.jpg"]
+      Stretch = True
+    }
+    { TextAreaWillianHIll TextArea
+      MoveScaled(1,11,29,25)
+    }
+    { GridViewWillianHillFutbol GridView
+      MoveScaled(32,13,109,22)
+    }
+    { ButtonLeerDatosWillianHill Button
+      MoveScaled(46,3,15,7)
+      Text = ("Leer")
+      Picture = Picture["icon:/32/make"]
+    }
+    { ButtonLimpiarWillianHill Button
+      MoveScaled(109,3,28,8)
+      Text = ("Borrar datos") & "..."
+      Picture = Picture["icon:/48/trash"]
+    }
+    { ButtonGridLimpiarWillianhill Button
+      MoveScaled(76,3,20,8)
+      Text = ("Regilla")
+      Picture = Picture["icon:/48/clear"]
+    }
+    Index = 2
+    Text = ("Luckia")
+    Picture = Picture["IconoPequeñoLuckia.png"]
+    { TextAreaLuckiaFutbol TextArea
+      MoveScaled(1,11,29,25)
+    }
+    { PictureBox4 PictureBox
+      MoveScaled(0,0,38,10)
+      Picture = Picture["luckia.jpg"]
+      Stretch = True
+    }
+    { GridViewLuckiaFutbol GridView
+      MoveScaled(32,13,109,22)
+    }
+    { ButtonLeerDatosLuckia Button
+      MoveScaled(46,3,15,7)
+      Text = ("Leer")
+      Picture = Picture["icon:/32/make"]
+    }
+    { ButtonGridLimpiarLuckia Button
+      MoveScaled(76,3,20,8)
+      Text = ("Regilla")
+      Picture = Picture["icon:/48/clear"]
+    }
+    { ButtonLimpiarLuckia Button
+      MoveScaled(109,3,28,8)
+      Text = ("Borrar datos") & "..."
+      Picture = Picture["icon:/48/trash"]
+    }
+    Index = 0
+  }
+  { TextLabel1 TextLabel
+    MoveScaled(48,0,36,5)
+    Font = Font["Bold,Italic,+4"]
+    Background = &H007FFF&
+    Foreground = &HFFFFFF&
+    Text = ("Futbol 1x2")
+    Alignment = Align.Center
+  }
+  { ButtonGridLimpiarMBet Button
+    MoveScaled(80,55,20,8)
+    Text = ("Regilla")
+    Picture = Picture["icon:/48/clear"]
+  }
+  { ButtonCombinar2 Button
+    MoveScaled(74,87,31,6)
+    Text = ("Willianhill - MBet  al\nportapapeles")
+    Picture = Picture["IconoPequeñoWillianHIll.png"]
+  }
+  { ButtonCombinar3 Button
+    MoveScaled(111,87,31,6)
+    Text = ("Luckia - MBet  al\nportapapeles")
+    Picture = Picture["IconoPequeñoLuckia.png"]
+  }
+}

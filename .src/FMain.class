@@ -1,0 +1,600 @@
+' Gambas class file
+
+Public Sub Form_Open()
+
+    defineGridViewSportiumFutbol()
+    defineGridViewMbetFutbol()
+    defineGridViewWillianHillFutbol()
+    defineGridViewLuckiaFutbol()
+
+End
+
+Public Sub defineGridViewLuckiaFutbol()
+
+    With GridViewLuckiaFutbol
+        .header = 3
+        .rows.count = 0
+        .columns.count = 9
+        .Columns[0].title = "E"
+        .Columns[1].title = "Hora"
+        .Columns[2].title = "Fecha"
+        .Columns[3].title = "Equipo1"
+        .Columns[4].title = "Cuota 1"
+        .Columns[5].title = "Empate"
+        .Columns[6].title = "Cuota X"
+        .Columns[7].title = "Equipo2"
+        .Columns[8].title = "Cuota 2"
+        .columns[7].width = 150
+        .columns[3].width = 150
+        .font.name = "Sans"
+        .font.size = 9
+
+    End With
+
+End
+
+Public Sub defineGridViewMbetFutbol()
+
+    With GridViewMBetFutbol
+        .header = 3
+        .rows.count = 0
+        .columns.count = 9
+        .Columns[0].title = "E"
+        .Columns[1].title = "Hora"
+        .Columns[2].title = "Fecha"
+        .Columns[3].title = "Equipo1"
+        .Columns[4].title = "Cuota 1"
+        .Columns[5].title = "Empate"
+        .Columns[6].title = "Cuota X"
+        .Columns[7].title = "Equipo2"
+        .Columns[8].title = "Cuota 2"
+        .columns[7].width = 150
+        .columns[3].width = 150
+        .font.name = "Sans"
+        .font.size = 9
+
+    End With
+
+End
+
+Public Sub defineGridViewWillianHillFutbol()
+
+    With GridViewWillianHillFutbol
+        .header = 3
+        .rows.count = 0
+        .columns.count = 9
+        .Columns[0].title = "E"
+        .Columns[1].title = "Hora"
+        .Columns[2].title = "Fecha"
+        .Columns[3].title = "Equipo1"
+        .Columns[4].title = "Cuota 1"
+        .Columns[5].title = "Empate"
+        .Columns[6].title = "Cuota X"
+        .Columns[7].title = "Equipo2"
+        .Columns[8].title = "Cuota 2"
+        .columns[7].width = 150
+        .columns[3].width = 150
+        .font.name = "Sans"
+        .font.size = 9
+
+    End With
+
+End
+
+Public Sub defineGridViewSportiumFutbol()
+
+    With GridViewSportiumFutbol
+        .header = 3
+        .rows.count = 0
+        .columns.count = 9
+        .Columns[0].title = "E"
+        .Columns[1].title = "Hora"
+        .Columns[2].title = "Fecha"
+        .Columns[3].title = "Equipo1"
+        .Columns[4].title = "Cuota 1"
+        .Columns[5].title = "Empate"
+        .Columns[6].title = "Cuota X"
+        .Columns[7].title = "Equipo2"
+        .Columns[8].title = "Cuota 2"
+        .columns[7].width = 150
+        .columns[3].width = 150
+        .font.name = "Sans"
+        .font.size = 9
+
+    End With
+
+End
+
+Public Sub ButtonLeerDatosSportium_Click()
+
+    Dim lineas As String[]
+    Dim contador As Integer
+    Dim fila As Integer
+    Dim HayEstadisticas As String
+
+    lineas = Split(TextAreaSportiumFutbol.text, "\n")
+
+    ''estructura de los datos de sportium 16/08/2018
+    ' estrella
+    ' hora
+    ' fecha
+    ' espacio
+    ' nombre1
+    ' cuota1
+    ' espacio
+    ' X
+    ' cuotaX
+    ' espacio
+    ' nombre2
+    ' cuota2
+    ' apuestas_disponibles
+    ' icono_estadistica
+
+    contador = -1
+
+    While (contador < (lineas.Count - 1))
+        fila += 1
+        contador += 1
+
+        GridViewSportiumFutbol.rows.count = fila + 1
+        Comun.limpiaFilaActual(GridViewSportiumFutbol, fila)
+
+        Try GridViewSportiumFutbol[fila - 1, 0].text = "Sportium" 'EstrellaS
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 1].text = lineas[contador] 'hora
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 2].text = lineas[contador] 'fecha
+        contador += 1  'espacio
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 3].text = lineas[contador] 'nombre1
+
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 4].text = lineas[contador] 'cuota1
+        contador += 1  'espacio
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 5].text = "Empate" 'lineas[contador] 'empate texto
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 6].text = lineas[contador] 'cuotax
+        contador += 1  'espacio
+
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 7].text = lineas[contador] 'nombre2
+        contador += 1
+        Try GridViewSportiumFutbol[fila - 1, 8].text = lineas[contador] 'cuota2
+        contador += 1 'apuesta disponibles
+        Try GridViewSportiumFutbol[fila - 1, 9].text = lineas[contador] 'apuestas disponibles
+
+        Try HayEstadisticas = lineas[contador + 1]
+        If HayEstadisticas = "st" Then
+            contador += 1 'apuesta icono estadistica
+
+        Endif
+    Wend
+
+End
+
+Public Sub ButtonLeerDatosMBETFutbol_Click()
+
+    Dim lineas As String[]
+    Dim contador As Integer
+    Dim fila As Integer
+    Dim datoLinea1 As String
+    Dim DatosCuotas As String[]
+    Dim Sintabulador As String
+
+    lineas = Split(TextAreaMbetButbol.text, "\n")
+
+    ''estructura de los datos de sportium 16/08/2018
+    ' linea1:
+    ' 	1. nombre
+    ' 	\t
+    ' 	\t
+    ' 	fecha
+    ' 	punto
+    ' 	hora
+    ' linea2
+    ' 	2. nombre
+    ' linea3
+    ' 	numeroapuetas
+    ' linea4
+    ' 	cuota1
+    ' 	\ t
+    ' cuotaX
+    ' 	\ t
+    ' 	cuota2
+
+    contador = -1
+
+    While (contador < (lineas.Count - 1))
+        fila += 1
+
+        GridViewMBetFutbol.rows.count = fila + 1
+        Comun.limpiaFilaActual(GridViewMBetFutbol, fila)
+        'Analisis linea1
+        contador += 1
+        Try datoLinea1 = lineas[contador]
+
+        Try GridViewMBetFutbol[fila - 1, 3].text = Mid$(datoLinea1, 3, InStr(datoLinea1, "\t") - 3) 'nombre1 'le quito el 1.
+
+        'Para saber si tiene puesto la fecha o no"
+
+        If Len(Mid$(datolinea1, InStr(datoLinea1, "\t\t") + 2, Len(datolinea1))) = 5 Then
+            Try GridViewMBetFutbol[fila - 1, 2].text = Format$(Now, "dd mmm") 'fecha
+            Try GridViewMBetFutbol[fila - 1, 1].text = Mid$(datoLinea1, RInStr(datoLinea1, "\t") + 1, Len(datolinea1)) 'hora
+
+        Else
+            Try GridViewMBetFutbol[fila - 1, 2].text = Mid$(datoLinea1, InStr(datoLinea1, "\t") + 2, 6) 'fecha
+            Try GridViewMBetFutbol[fila - 1, 1].text = Mid$(datoLinea1, RInStr(datoLinea1, ".") + 2, Len(datolinea1)) 'hora
+
+        Endif
+
+        'Analisis linea2
+        contador += 1
+        Try GridViewMBetFutbol[fila - 1, 7].text = Mid$(lineas[contador], 3, Len(lineas[contador])) 'nombre2' le quito el 2.
+
+        'Analisis linea3
+        contador += 1
+        Try GridViewMBetFutbol[fila - 1, 9].text = lineas[contador] 'apuestas disponibles
+        'Analisis linea4
+        contador += 1
+
+        Try DatosCuotas = Split(lineas[contador], "\t")
+        Try GridViewMBetFutbol[fila - 1, 4].text = DatosCuotas[0] 'cuota1
+        Try GridViewMBetFutbol[fila - 1, 6].text = DatosCuotas[1] 'cuotax
+        Try GridViewMBetFutbol[fila - 1, 8].text = DatosCuotas[2] 'cuota2
+        Try GridViewMBetFutbol[fila - 1, 0].text = "MBet" 'Estrella: casa mbet
+    Wend
+
+End
+
+Public Sub ButtonCombinar_Click()
+
+    Dim contador As Integer
+    Dim datosCSV As String
+
+    Clipboard.Clear() 'limpio portapapeles
+    contador = -1
+    datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    While (contador < GridViewMBetFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
+    Wend
+    contador = -1
+    While (contador < GridViewSportiumFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewSportiumFutbol, contador)
+    Wend
+
+    Clipboard.Copy(datosCSV)
+
+    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+
+End
+
+Public Function textofila(grid As GridView, i As Integer) As String
+
+    Dim contador As Integer
+    Dim texto As String
+
+    contador = -1
+
+    While (contador < (grid.columns.count - 1))
+        contador += 1
+        If contador = 4 Or contador = 6 Or contador = 8 Then
+            'solo reemplaza cuando hay numero de cuotas en las columnas
+            Try texto &= Replace(grid[i, contador].text, ".", ",") & "\t"
+        Else
+            Try texto &= Replace(grid[i, contador].text, "\t", "") & "\t" 'por si los datos contienen algun \t no previsto, lo quita, y solo añado el que me interesa
+        Endif
+    Wend
+
+    Return texto & "\n"
+
+End
+
+Public Sub ButtonLimpiarSportium_Click()
+
+    TextAreaSportiumFutbol.text = ""
+    GridViewSportiumFutbol.rows.count = 0
+
+End
+
+Public Sub ButtonLimpiarMbetDatos_Click()
+
+    TextAreaMbetButbol.text = ""
+    GridViewMBetFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonLimpiarWillianHill_Click()
+
+    TextAreaWillianHIll.text = ""
+    GridViewWillianHillFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonGridLimpiarWillianhill_Click()
+
+    GridViewWillianHillFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonGridLimpiarMBet_Click()
+
+    GridViewMBetFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonGridLimpiarWillianhill3_Click()
+
+    GridViewSportiumFutbol.rows.count = 0
+
+End
+
+Public Sub ButtonLeerDatosWillianHill_Click()
+
+    ''estructura de datos
+    ' Directo
+    ' 20: 15 ES Girona - Valladolid
+    ' 1.75
+    ' 3.60
+    ' 4.60
+    ' + 233 Apuestas
+    '  Estad ísticas
+    ' A ñadir a mis favoritos
+    ' 18 Ago 20: 15 ES Villarreal - Real Sociedad
+    ' 2.05
+    ' 3.30
+    ' 3.60
+    ' + 256 Apuestas
+    '  Estad ísticas
+    ' A ñadir a mis favoritos
+    Dim lineas As String[]
+    Dim contador As Integer
+    Dim fila As Integer
+    Dim DatoColumnafecha As Boolean
+    Dim contenido As String
+
+    lineas = Split(TextAreaWillianHIll.text, "\n")
+
+    contador = -1
+
+    'comprobacion inicial de estructura espacio-ganador del partido 1 x 2"
+
+    If lineas[0] = "" And lineas[1] = "Ganador del partido" And lineas[2] = "1" And lineas[3] = "X" And lineas[4] = "2" Then
+        lineas.Delete(0, 6) 'la linea 6 esta vacia
+    Endif
+
+    While (contador < (lineas.Count - 1))
+        fila += 1
+        contador += 1
+        DatoColumnafecha = False
+        GridViewWillianHillFutbol.rows.count = fila + 1
+        Comun.limpiaFilaActual(GridViewWillianHillFutbol, fila)
+
+        If lineas[contador] = "Directo" Then
+            Try GridViewWillianHillFutbol[fila - 1, 2].text = Format$(Now, "dd mmm") 'fecha
+            contador += 1
+            DatoColumnafecha = True
+        Endif
+
+        'leo fecha hora nombre equipo 1 y nombre equipo 2
+        contenido = lineas[contador]
+        If DatoColumnaFecha = True Then
+
+            Try GridViewWillianHillFutbol[fila - 1, 1].text = Mid$(contenido, 1, 5) 'hora
+            Try GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 10, String.InStr(contenido, " - ") - 10) 'nombre1
+
+        Else
+
+            Try GridViewWillianHillFutbol[fila - 1, 2].text = Mid$(contenido, 1, 6) 'fecha
+            Try GridViewWillianHillFutbol[fila - 1, 1].text = Mid$(contenido, 8, 5) 'hora
+
+            GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 17, string.InStr(contenido, " - ") - 17) 'nombre1
+
+        Endif
+
+        Try GridViewWillianHillFutbol[fila - 1, 7].text = String.Mid$(contenido, String.InStr(contenido, " - ") + 5, Len(contenido)) 'nombre2
+
+        contador += 1
+        Try GridViewWillianHillFutbol[fila - 1, 4].text = lineas[contador] 'cuota1
+
+        contador += 1
+        Try GridViewWillianHillFutbol[fila - 1, 6].text = lineas[contador] 'cuotax
+        contador += 1
+        Try GridViewWillianHillFutbol[fila - 1, 8].text = lineas[contador] 'cuota2
+        Try GridViewWillianHillFutbol[fila - 1, 0].text = "0_WillianHill" 'Estrella: casa  willian hill
+        contador += 1 '+ 258 Apuestas
+        contador += 1 ' Estadísticas
+        contador += 1 'Añadir a mis favoritos
+
+    Wend
+
+End
+
+Public Sub ButtonCombinar2_Click()
+
+    Dim contador As Integer
+    Dim datosCSV As String
+
+    Clipboard.Clear() 'limpio portapapeles
+    contador = -1
+    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    While (contador < GridViewMBetFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
+    Wend
+    contador = -1
+    While (contador < GridViewWillianHillFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewWillianHillFutbol, contador)
+    Wend
+
+    Clipboard.Copy(datosCSV)
+
+    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+
+End
+
+' Public Sub ButtonGridLimpiarMBet_Click()
+'
+'     GridViewMBetFutbol.Rows.count = 0
+'
+' End
+
+Public Sub ButtonGridLimpiarLuckia_Click()
+
+    GridViewLuckiaFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonLimpiarLuckia_Click()
+
+    TextAreaLuckiaFutbol.text = ""
+    GridViewLuckiaFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonLeerDatosLuckia_Click()
+
+    Dim lineas As String[]
+    Dim contador As Integer
+    Dim fila As Integer
+    Dim HayEspacio As String
+    Dim contenido As String
+    Dim a As Integer 'contador para for next
+
+    lineas = Split(TextAreaLuckiaFutbol.text, "\n")
+
+    ''estructura de los datos de luckia 16/08/2018
+    '1ºeliminar las lineas que sean: 1X2 FT
+
+    For a = 0 To lineas.count - 1
+        Try contenido = lineas[a]
+        If contenido = "1X2 FT" Then
+            lineas.delete(a)
+        Endif
+    Next
+
+    '2º Eliminar las lineas que se incien con Hoy,Mañana,Lunes,Martes,Miercoles...'
+
+    For a = 0 To lineas.count - 1
+
+        eliminaLinea(lineas, a, ["Hoy", "Mañana", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"])
+
+    Next
+
+    ' fecha
+    ' equipo 1
+    ' hora
+    ' equipo 2
+    ' espacio
+    ' equipo 1
+    ' cuota 1
+    ' espacio
+    ' Empate
+    ' cuota empate
+    ' espacio
+    ' equipo 2
+    '  cuota 2
+    ' numero de apuesta
+    'espacio o linea elminada, y coincide con fecha...
+
+    contador = -1
+
+    While (contador < (lineas.Count - 1))
+        fila += 1
+        contador += 1
+
+        GridViewLuckiaFutbol.rows.count = fila + 1
+        Comun.limpiaFilaActual(GridViewLuckiaFutbol, fila)
+
+        Try GridViewLuckiaFutbol[fila - 1, 0].text = "Luckia" 'Estrellas 1º columna
+
+        Try GridViewLuckiaFutbol[fila - 1, 2].text = lineas[contador] 'fecha
+
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 3].text = lineas[contador] 'nombre1
+
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 1].text = lineas[contador] 'hora
+
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 7].text = lineas[contador] 'nombre2
+
+        contador += 1  'espacio
+
+        contador += 1  'equipo 1 repetido
+
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 4].text = lineas[contador] 'cuota1
+
+        contador += 1  'espacio
+
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 5].text = "Empate" 'lineas[contador] 'empate texto
+
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 6].text = lineas[contador] 'cuotax
+
+        contador += 1  'espacio
+
+        contador += 1 'nombre repetido equipo 2
+
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 8].text = lineas[contador] 'cuota2
+
+        contador += 1 'apuesta disponibles
+        Try GridViewLuckiaFutbol[fila - 1, 9].text = lineas[contador] 'apuestas disponibles
+
+        Try HayEspacio = lineas[contador + 1]
+        If HayEspacio = "" Then
+            contador += 1 'hay un espacio
+
+        Endif
+    Wend
+
+End
+
+Public Sub eliminalinea(cadena As String[], a As Integer, lista As String[])
+    ' Dado una array de cadenas, con el valor del indice por donde vamos iterinando,
+    ' comparo la parte inicial de la cadena con los valores de la lista, y si coinciden elimina ese valor del array cadena
+
+    Dim i As Integer
+
+    If a > (cadena.count - 1) Then Return 'se ha eliminado alguna linea,y el contador a superado el numero de elementos del array
+
+    For i = 0 To lista.Max
+        If Mid$(cadena[a], 1, Len(lista[i])) = lista[i] Then
+            cadena.Delete(a)
+            Return
+        Endif
+    Next
+
+    Return
+
+End
+
+Public Sub ButtonCombinar3_Click()
+
+    Dim contador As Integer
+    Dim datosCSV As String
+
+    Clipboard.Clear() 'limpio portapapeles
+    contador = -1
+    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    While (contador < GridViewMBetFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
+    Wend
+    contador = -1
+    While (contador < GridViewLuckiaFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewLuckiaFutbol, contador)
+    Wend
+
+    Clipboard.Copy(datosCSV)
+
+    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+
+End

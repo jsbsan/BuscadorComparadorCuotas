@@ -1,0 +1,11 @@
+' Gambas module file
+
+Public Sub limpiaFilaActual(grid As Gridview, f As Integer)
+
+    Dim a As Integer
+
+    For a = 0 To grid.columns.count - 1
+        grid[f, a].text = ""
+    Next
+
+End
