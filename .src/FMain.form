@@ -15,7 +15,7 @@
     Picture = Picture["icon:/32/make"]
   }
   { ButtonCombinar Button
-    MoveScaled(33,87,37,6)
+    MoveScaled(1,87,28.5714,6.4286)
     Text = ("Sportium - MBET al \nportapapeles")
     Picture = Picture["IconoPequeñoSportium.png"]
   }
@@ -31,7 +31,7 @@
   }
   { TabStrip1 TabStrip
     MoveScaled(1,6,142,41)
-    Count = 3
+    Count = 5
     Index = 0
     Text = ("Sportium")
     Picture = Picture["IconoPequeñoSportium.png"]
@@ -119,6 +119,70 @@
       Text = ("Borrar datos") & "..."
       Picture = Picture["icon:/48/trash"]
     }
+    Index = 3
+    Text = ("Codere")
+    Picture = Picture["iconoPequeñoCodere.png"]
+    { PictureBox5 PictureBox
+      MoveScaled(0,0,38,10)
+      Picture = Picture["codere.jpg"]
+      Stretch = True
+    }
+    { TextAreaCodereFutbol TextArea
+      MoveScaled(1,11,29,25)
+    }
+    { GridViewCodereFutbol GridView
+      MoveScaled(32,13,109,22)
+    }
+    { ButtonLeerDatosCodere Button
+      MoveScaled(46,4,15,7)
+      Text = ("Leer")
+      Picture = Picture["icon:/32/make"]
+    }
+    { ButtonGridLimpiarCodere Button
+      MoveScaled(76,3,20,8)
+      Text = ("Regilla")
+      Picture = Picture["icon:/48/clear"]
+    }
+    { ButtonLimpiarCodere Button
+      MoveScaled(109,3,28,8)
+      Text = ("Borrar datos") & "..."
+      Picture = Picture["icon:/48/trash"]
+    }
+    { Label1 Label
+      MoveScaled(1,11,142,25)
+      Background = &HFFFF00&
+      Text = ("Formato WEB desconocido para descargar...no admite seleccionar y copiar al portapapeles")
+      Alignment = Align.Center
+    }
+    Index = 4
+    Text = ("GoldenPark")
+    Picture = Picture["iconoPequeñoGoldenPark.png"]
+    { PictureBox6 PictureBox
+      MoveScaled(0,0,38,10)
+      Picture = Picture["goldenpark.jpg"]
+      Stretch = True
+    }
+    { TextAreaGoldenParkFutbol TextArea
+      MoveScaled(1,11,29,25)
+    }
+    { GridViewGoldenPark GridView
+      MoveScaled(32,11,109,24)
+    }
+    { ButtonLeerDatosGoldenPark Button
+      MoveScaled(46,2,15,8)
+      Text = ("Leer")
+      Picture = Picture["icon:/32/make"]
+    }
+    { ButtonGridLimpiarGoldenPark Button
+      MoveScaled(76,2,20,8)
+      Text = ("Regilla")
+      Picture = Picture["icon:/48/clear"]
+    }
+    { ButtonLimpiarGoldenPark Button
+      MoveScaled(109,2,28,8)
+      Text = ("Borrar datos") & "..."
+      Picture = Picture["icon:/48/trash"]
+    }
     Index = 0
   }
   { TextLabel1 TextLabel
@@ -135,13 +199,23 @@
     Picture = Picture["icon:/48/clear"]
   }
   { ButtonCombinar2 Button
-    MoveScaled(74,87,31,6)
+    MoveScaled(30,87,28.5714,6.4286)
     Text = ("Willianhill - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoWillianHIll.png"]
   }
   { ButtonCombinar3 Button
-    MoveScaled(111,87,31,6)
+    MoveScaled(59,87,28.5714,6.4286)
     Text = ("Luckia - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoLuckia.png"]
+  }
+  { ButtonCombinarCodereMbet Button
+    MoveScaled(88,87,28.5714,6.4286)
+    Text = ("Codere - MBet  al\nportapapeles")
+    Picture = Picture["iconoPequeñoCodere.png"]
+  }
+  { ButtonCombinarGoldenParkMBet Button
+    MoveScaled(117,87,28.5714,6.4286)
+    Text = ("GodenPark - MBet  \nal portapapeles")
+    Picture = Picture["iconoPequeñoGoldenPark.png"]
   }
 }

@@ -2,7 +2,7 @@
 Title=BuscadorComparadorCuotas
 Startup=FMain
 Icon=icono1x2.png
-Version=0.0.4
+Version=0.0.5
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form

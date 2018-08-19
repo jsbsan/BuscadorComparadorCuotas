@@ -6,6 +6,31 @@ Public Sub Form_Open()
     defineGridViewMbetFutbol()
     defineGridViewWillianHillFutbol()
     defineGridViewLuckiaFutbol()
+    defineGridViewGoldenFutbol()
+
+End
+
+Public Sub defineGridViewGoldenFutbol()
+
+    With GridViewGoldenPark
+        .header = 3
+        .rows.count = 0
+        .columns.count = 9
+        .Columns[0].title = "E"
+        .Columns[1].title = "Hora"
+        .Columns[2].title = "Fecha"
+        .Columns[3].title = "Equipo1"
+        .Columns[4].title = "Cuota 1"
+        .Columns[5].title = "Empate"
+        .Columns[6].title = "Cuota X"
+        .Columns[7].title = "Equipo2"
+        .Columns[8].title = "Cuota 2"
+        .columns[7].width = 150
+        .columns[3].width = 150
+        .font.name = "Sans"
+        .font.size = 9
+
+    End With
 
 End
 
@@ -596,5 +621,145 @@ Public Sub ButtonCombinar3_Click()
     Clipboard.Copy(datosCSV)
 
     Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+
+End
+
+Public Sub ButtonCombinarGoldenParkMBet_Click()
+
+    Dim contador As Integer
+    Dim datosCSV As String
+
+    Clipboard.Clear() 'limpio portapapeles
+    contador = -1
+    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    While (contador < GridViewMBetFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
+    Wend
+    contador = -1
+    While (contador < GridViewGoldenPark.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewGoldenPark, contador)
+    Wend
+
+    Clipboard.Copy(datosCSV)
+
+    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+
+End
+
+Public Sub ButtonCombinarCodereMbet_Click()
+
+    Dim contador As Integer
+    Dim datosCSV As String
+
+    Clipboard.Clear() 'limpio portapapeles
+    contador = -1
+    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    While (contador < GridViewMBetFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
+    Wend
+    contador = -1
+    While (contador < GridViewCodereFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewCodereFutbol, contador)
+    Wend
+
+    Clipboard.Copy(datosCSV)
+
+    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+
+End
+
+Public Sub ButtonGridLimpiarCodere_Click()
+
+    GridViewCodereFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonGridLimpiarGoldenPark_Click()
+
+    GridViewGoldenPark.Rows.count = 0
+
+End
+
+Public Sub ButtonLimpiarGoldenPark_Click()
+
+    TextAreaGoldenParkFutbol.text = ""
+    GridViewGoldenPark.Rows.count = 0
+
+End
+
+Public Sub ButtonLimpiarCodere_Click()
+
+    TextAreaCodereFutbol.text = ""
+    GridViewCodereFutbol.Rows.count = 0
+
+End
+
+Public Sub ButtonLeerDatosGoldenPark_Click()
+
+    Dim lineas As String[]
+    Dim contador As Integer
+    Dim fila As Integer
+    Dim equipos As New String[]
+
+    lineas = Split(TextAreaGoldenParkFutbol.text, "\n")
+
+    ''estructura de los datos de goldenpark 19/08/2018
+    ' Destacados 1 X 2
+    ' fecha:MesDia
+    ' hora
+    ' nombre1 + " v " + nombre 2
+    ' cuota 1
+    ' cuota X
+    ' cuota 2
+    ' apuestas_disponibles
+
+    'borro la primera linea "Destacados 1 X 2'
+    If lineas[0] = "Destacados	1	X	2	" Then
+        lineas.delete(0)
+    Endif
+
+    contador = -1
+
+    While (contador < (lineas.Count - 1))
+        fila += 1
+        contador += 1
+
+        GridViewGoldenPark.rows.count = fila + 1
+        Comun.limpiaFilaActual(GridViewGoldenPark, fila)
+
+        Try GridViewGoldenPark[fila - 1, 0].text = "0_GoldenPark" 'Casa de Apuesta
+
+        Try GridViewGoldenPark[fila - 1, 2].text = Mid$(lineas[contador], 4, 2) & " " & Mid$(lineas[contador], 1, 3) 'fecha
+
+        contador += 1
+        Try GridViewGoldenPark[fila - 1, 1].text = lineas[contador] 'hora
+
+        equipos.Clear()
+        contador += 1
+        Try equipos = Split(Replace(lineas[contador], " v ", "|"), "|")
+
+        Try GridViewGoldenPark[fila - 1, 3].text = equipos[0] 'nombre1
+
+        Try GridViewGoldenPark[fila - 1, 7].text = equipos[1] 'nombre2
+
+        contador += 1
+        Try GridViewGoldenPark[fila - 1, 4].text = lineas[contador] 'cuota1
+
+        Try GridViewGoldenPark[fila - 1, 5].text = "" 'lineas[contador] 'empate texto
+
+        contador += 1
+        Try GridViewGoldenPark[fila - 1, 6].text = lineas[contador] 'cuotax
+
+        contador += 1
+        Try GridViewGoldenPark[fila - 1, 8].text = lineas[contador] 'cuota2
+
+        contador += 1 'apuesta disponibles
+        Try GridViewGoldenPark[fila - 1, 9].text = lineas[contador] 'apuestas disponibles
+
+    Wend
 
 End
