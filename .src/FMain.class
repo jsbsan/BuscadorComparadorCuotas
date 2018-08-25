@@ -282,12 +282,12 @@ Public Sub ButtonCombinar_Click()
     datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
     Wend
     contador = -1
     While (contador < GridViewSportiumFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewSportiumFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewSportiumFutbol, contador))
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -447,12 +447,12 @@ Public Sub ButtonCombinar2_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
     Wend
     contador = -1
     While (contador < GridViewWillianHillFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewWillianHillFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewWillianHillFutbol, contador))
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -610,12 +610,12 @@ Public Sub ButtonCombinar3_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
     Wend
     contador = -1
     While (contador < GridViewLuckiaFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewLuckiaFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewLuckiaFutbol, contador))
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -634,12 +634,12 @@ Public Sub ButtonCombinarGoldenParkMBet_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
     Wend
     contador = -1
     While (contador < GridViewGoldenPark.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewGoldenPark, contador)
+        datosCSV &= RTrim(textofila(GridViewGoldenPark, contador))
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -658,12 +658,12 @@ Public Sub ButtonCombinarCodereMbet_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
     Wend
     contador = -1
     While (contador < GridViewCodereFutbol.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewCodereFutbol, contador)
+        datosCSV &= RTrim(textofila(GridViewCodereFutbol, contador))
     Wend
 
     Clipboard.Copy(datosCSV)
