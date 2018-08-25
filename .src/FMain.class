@@ -164,7 +164,7 @@ Public Sub ButtonLeerDatosSportium_Click()
         GridViewSportiumFutbol.rows.count = fila + 1
         Comun.limpiaFilaActual(GridViewSportiumFutbol, fila)
 
-        Try GridViewSportiumFutbol[fila - 1, 0].text = "Sportium" 'EstrellaS
+        Try GridViewSportiumFutbol[fila - 1, 0].text = "0_Sportium" 'EstrellaS
         contador += 1
         Try GridViewSportiumFutbol[fila - 1, 1].text = lineas[contador] 'hora
         contador += 1
@@ -272,27 +272,114 @@ Public Sub ButtonLeerDatosMBETFutbol_Click()
 
 End
 
-Public Sub ButtonCombinar_Click()
+Public Sub Combinar(gridviewOtro As GridView)
 
     Dim contador As Integer
     Dim datosCSV As String
 
     Clipboard.Clear() 'limpio portapapeles
     contador = -1
-    datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    '  datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
         datosCSV &= textofila(GridViewMBetFutbol, contador)
     Wend
+
     contador = -1
-    While (contador < GridViewSportiumFutbol.Rows.Count)
+    While (contador < gridviewOtro.Rows.Count)
         contador += 1
-        datosCSV &= textofila(GridViewSportiumFutbol, contador)
+        datosCSV &= textofila(gridviewOtro, contador)
     Wend
 
+    'ordenar filas...
+    datosCSV = ordenar(datosCSV)
+
+    'añado cabecera:
+
+    datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n" & datosCSV
+
+    'el resultado lo copio al portapapeles
     Clipboard.Copy(datosCSV)
 
     Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+
+End
+
+Public Function ordenar(texto As String) As String
+
+    Dim listaOrigen As String[]
+    Dim listaTemporal As New String[]
+    Dim listaOrdenada As New String[]
+    Dim lineaOrdenada As String
+    Dim TextoOrdenado As String
+    Dim linea As String
+    Dim nuevalinea As String[]
+
+    listaOrigen = Split(texto, "\n")
+
+    'intercambio de columnas
+    For Each linea In ListaOrigen
+        If Trim(linea) = "" Then Continue
+
+        nuevalinea = Split(linea, "\t")
+        'reoordeno
+        '"Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+        '   0     1     2      3        4       5       6        7      8
+        'Ordeno: fecha/hora/Equipo1/Casa ->
+        'recorto el nombre del equipo 1 para facilitar la ordenacion, y lo añado completo al final para poderlo recuperar
+        'caracteres para ordenar por nombre: pongo que coja los 4 primeros (tambien añado espacios por si el nombre es mas corto)
+        lineaOrdenada = nuevalinea[2] & "\t" & nuevalinea[1] & "\t" & normalizacion(nuevalinea[3]) & "\t" & nuevalinea[0] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\t" & nuevalinea[8] & "\t" & nuevalinea[3]
+
+        'añado a la listaTemporal
+        listaTemporal.add(lineaOrdenada)
+
+    Next
+
+    'ordeno la lista temporal con las columnas cambiadas
+    listaOrdenada = listaTemporal.Sort(gb.Ascent)
+
+    'intercambio de columnas
+    For Each linea In ListaOrdenada
+        nuevalinea = Split(linea, "\t")
+        'reoordeno
+        'Ordeno: fecha/hora/Equipo1/Casa ->
+        '          0     1     2->9!     3
+        'a
+        '"Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n" -> la 9 tiene el nombre completo
+        '   0     1     2      3        4       5       6        7      8
+        lineaOrdenada = nuevalinea[3] & "\t" & nuevalinea[1] & "\t" & nuevalinea[0] & "\t" & nuevalinea[9] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\t" & nuevalinea[8] & "\n"
+
+        TextoOrdenado &= lineaOrdenada
+    Next
+
+    Return TextoOrdenado
+
+End
+
+Public Function normalizacion(NombreEquipo As String) As String
+
+    Dim PalabrasQuitar As New String[]
+    Dim tokens As String
+
+    'trozos de palabras a quitar para normalizar nombre
+    PalabrasQuitar = ["REAL ", "R.", "R. ", "D.", "D.", "DEPORTIVO", "RC ", "CF", "RDC", "RDC ", "MANCHESTER ", "MAN "]
+
+    NombreEquipo = Upper(NombreEquipo)
+
+    For Each tokens In PalabrasQuitar
+        NombreEquipo = Replace(NombreEquipo, tokens, "")
+    Next
+
+    NombreEquipo &= "    " 'añado algunos espacios para que no de problemas el mid
+
+    Return Mid$(NombreEquipo, 1, 4)
+
+End
+
+Public Sub ButtonCombinarSportiumMbet_Click()
+
+    Combinar(GridViewSportiumFutbol)
 
 End
 
@@ -437,27 +524,9 @@ Public Sub ButtonLeerDatosWillianHill_Click()
 
 End
 
-Public Sub ButtonCombinar2_Click()
+Public Sub ButtonCombinarWillianHIllMbet_Click()
 
-    Dim contador As Integer
-    Dim datosCSV As String
-
-    Clipboard.Clear() 'limpio portapapeles
-    contador = -1
-    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
-    While (contador < GridViewMBetFutbol.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
-    Wend
-    contador = -1
-    While (contador < GridViewWillianHillFutbol.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewWillianHillFutbol, contador)
-    Wend
-
-    Clipboard.Copy(datosCSV)
-
-    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+    Combinar(GridViewWillianHillFutbol)
 
 End
 
@@ -534,7 +603,7 @@ Public Sub ButtonLeerDatosLuckia_Click()
         GridViewLuckiaFutbol.rows.count = fila + 1
         Comun.limpiaFilaActual(GridViewLuckiaFutbol, fila)
 
-        Try GridViewLuckiaFutbol[fila - 1, 0].text = "Luckia" 'Estrellas 1º columna
+        Try GridViewLuckiaFutbol[fila - 1, 0].text = "0_Luckia" 'Estrellas 1º columna
 
         Try GridViewLuckiaFutbol[fila - 1, 2].text = lineas[contador] 'fecha
 
@@ -600,75 +669,39 @@ Public Sub eliminalinea(cadena As String[], a As Integer, lista As String[])
 
 End
 
-Public Sub ButtonCombinar3_Click()
+Public Sub ButtonCombinarLuckiaMbet_Click()
 
-    Dim contador As Integer
-    Dim datosCSV As String
-
-    Clipboard.Clear() 'limpio portapapeles
-    contador = -1
-    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
-    While (contador < GridViewMBetFutbol.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
-    Wend
-    contador = -1
-    While (contador < GridViewLuckiaFutbol.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewLuckiaFutbol, contador)
-    Wend
-
-    Clipboard.Copy(datosCSV)
-
-    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+    Combinar(GridViewLuckiaFutbol)
 
 End
 
 Public Sub ButtonCombinarGoldenParkMBet_Click()
 
-    Dim contador As Integer
-    Dim datosCSV As String
-
-    Clipboard.Clear() 'limpio portapapeles
-    contador = -1
-    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
-    While (contador < GridViewMBetFutbol.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
-    Wend
-    contador = -1
-    While (contador < GridViewGoldenPark.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewGoldenPark, contador)
-    Wend
-
-    Clipboard.Copy(datosCSV)
-
-    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+    Combinar(GridViewGoldenPark)
 
 End
 
 Public Sub ButtonCombinarCodereMbet_Click()
 
-    Dim contador As Integer
-    Dim datosCSV As String
-
-    Clipboard.Clear() 'limpio portapapeles
-    contador = -1
-    datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
-    While (contador < GridViewMBetFutbol.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewMBetFutbol, contador)
-    Wend
-    contador = -1
-    While (contador < GridViewCodereFutbol.Rows.Count)
-        contador += 1
-        datosCSV &= textofila(GridViewCodereFutbol, contador)
-    Wend
-
-    Clipboard.Copy(datosCSV)
-
-    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+    ' Dim contador As Integer
+    ' Dim datosCSV As String
+    '
+    ' Clipboard.Clear() 'limpio portapapeles
+    ' contador = -1
+    ' datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    ' While (contador < GridViewMBetFutbol.Rows.Count)
+    '     contador += 1
+    '     datosCSV &= textofila(GridViewMBetFutbol, contador)
+    ' Wend
+    ' contador = -1
+    ' While (contador < GridViewCodereFutbol.Rows.Count)
+    '     contador += 1
+    '     datosCSV &= textofila(GridViewCodereFutbol, contador)
+    ' Wend
+    '
+    ' Clipboard.Copy(datosCSV)
+    '
+    ' Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
 
 End
 

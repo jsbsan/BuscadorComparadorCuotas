@@ -14,7 +14,7 @@
     Text = ("Leer")
     Picture = Picture["icon:/32/make"]
   }
-  { ButtonCombinar Button
+  { ButtonCombinarSportiumMbet Button
     MoveScaled(1,87,28.5714,6.4286)
     Text = ("Sportium - MBET al \nportapapeles")
     Picture = Picture["IconoPequeñoSportium.png"]
@@ -198,12 +198,12 @@
     Text = ("Regilla")
     Picture = Picture["icon:/48/clear"]
   }
-  { ButtonCombinar2 Button
+  { ButtonCombinarWillianHIllMbet Button
     MoveScaled(30,87,28.5714,6.4286)
     Text = ("Willianhill - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoWillianHIll.png"]
   }
-  { ButtonCombinar3 Button
+  { ButtonCombinarLuckiaMbet Button
     MoveScaled(59,87,28.5714,6.4286)
     Text = ("Luckia - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoLuckia.png"]
