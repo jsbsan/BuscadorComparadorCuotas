@@ -282,12 +282,12 @@ Public Sub ButtonCombinar_Click()
     datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
     Wend
     contador = -1
     While (contador < GridViewSportiumFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewSportiumFutbol, contador))
+        datosCSV &= textofila(GridViewSportiumFutbol, contador)
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -307,9 +307,9 @@ Public Function textofila(grid As GridView, i As Integer) As String
         contador += 1
         If contador = 4 Or contador = 6 Or contador = 8 Then
             'solo reemplaza cuando hay numero de cuotas en las columnas
-            Try texto &= Replace(grid[i, contador].text, ".", ",") & "\t"
+            Try texto &= Replace(RTrim(grid[i, contador].text), ".", ",") & "\t"
         Else
-            Try texto &= Replace(grid[i, contador].text, "\t", "") & "\t" 'por si los datos contienen algun \t no previsto, lo quita, y solo añado el que me interesa
+            Try texto &= Replace(RTrim(grid[i, contador].text), "\t", "") & "\t" 'por si los datos contienen algun \t no previsto, lo quita, y solo añado el que me interesa
         Endif
     Wend
 
@@ -447,12 +447,12 @@ Public Sub ButtonCombinar2_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
     Wend
     contador = -1
     While (contador < GridViewWillianHillFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewWillianHillFutbol, contador))
+        datosCSV &= textofila(GridViewWillianHillFutbol, contador)
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -610,12 +610,12 @@ Public Sub ButtonCombinar3_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
     Wend
     contador = -1
     While (contador < GridViewLuckiaFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewLuckiaFutbol, contador))
+        datosCSV &= textofila(GridViewLuckiaFutbol, contador)
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -634,12 +634,12 @@ Public Sub ButtonCombinarGoldenParkMBet_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
     Wend
     contador = -1
     While (contador < GridViewGoldenPark.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewGoldenPark, contador))
+        datosCSV &= textofila(GridViewGoldenPark, contador)
     Wend
 
     Clipboard.Copy(datosCSV)
@@ -658,12 +658,12 @@ Public Sub ButtonCombinarCodereMbet_Click()
     datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
     While (contador < GridViewMBetFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewMBetFutbol, contador))
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
     Wend
     contador = -1
     While (contador < GridViewCodereFutbol.Rows.Count)
         contador += 1
-        datosCSV &= RTrim(textofila(GridViewCodereFutbol, contador))
+        datosCSV &= textofila(GridViewCodereFutbol, contador)
     Wend
 
     Clipboard.Copy(datosCSV)
