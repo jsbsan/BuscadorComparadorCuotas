@@ -449,16 +449,20 @@ Public Sub ButtonLeerDatosWillianHill_Click()
     Dim fila As Integer
     Dim DatoColumnafecha As Boolean
     Dim contenido As String
+    Dim lineaAnalizar As String
 
     lineas = Split(TextAreaWillianHIll.text, "\n")
 
     contador = -1
-
+    'Normalizo el inicio de la lectura de datos
     'comprobacion inicial de estructura espacio-ganador del partido 1 x 2"
+    If lineas[0] = "Ganador del partido" Then lineas.Add("", 0)
 
     If lineas[0] = "" And lineas[1] = "Ganador del partido" And lineas[2] = "1" And lineas[3] = "X" And lineas[4] = "2" Then
-        lineas.Delete(0, 6) 'la linea 6 esta vacia
+        lineas.Delete(0, 5)
     Endif
+
+    If lineas[0] = "" Then lineas.Delete(0, 1) 'borra linea 0, si esta vacia...
 
     While (contador < (lineas.Count - 1))
         fila += 1
@@ -499,9 +503,31 @@ Public Sub ButtonLeerDatosWillianHill_Click()
         contador += 1
         Try GridViewWillianHillFutbol[fila - 1, 8].text = lineas[contador] 'cuota2
         Try GridViewWillianHillFutbol[fila - 1, 0].text = "0_WillianHill" 'Estrella: casa  willian hill
-        contador += 1 '+ 258 Apuestas
+
+        contador += 1
+        Try lineaAnalizar = lineas[contador]
+        If Mid(lineaAnalizar, 1, 1) = "+" Then
+            'hay linea de numero de apuestas
+            '+ 258 Apuestas
+        Else
+            contador -= 1
+        Endif
+
         contador += 1 ' Estadísticas
+        Try lineaAnalizar = lineas[contador]
+        If Mid$(lineaAnalizar, 1, 5) = " Esta" Then
+            'hay estadisticas
+        Else
+            contador -= 1
+        Endif
+
         contador += 1 'Añadir a mis favoritos
+        Try lineaAnalizar = lineas[contador]
+        If Mid$(lineaAnalizar, 1, 5) = "Añad" Then
+            'hay estrella de añadir a mis favoritos
+        Else
+            contador -= 1
+        Endif
 
     Wend
 
@@ -781,5 +807,42 @@ Public Sub ButtonLeerDatosGoldenPark_Click()
 
     Wend
     TextAreaGoldenParkFutbol.pos = 1
+
+End
+
+Public Sub PegarDAtos(t As TextArea)
+
+    t.text = Clipboard.Paste()
+    t.pos = 1
+
+End
+
+Public Sub ButtonPegarSportium_Click()
+
+    PegarDAtos(TextAreaSportiumFutbol)
+
+End
+
+Public Sub ButtonPegarWillianHIll_Click()
+
+    PegarDAtos(TextAreaWillianHIll)
+
+End
+
+Public Sub ButtonPegarLuckia_Click()
+
+    PegarDAtos(TextAreaLuckiaFutbol)
+
+End
+
+Public Sub ButtonPegarGolden_Click()
+
+    PegarDAtos(TextAreaGoldenParkFutbol)
+
+End
+
+Public Sub ButtonPegarMbet_Click()
+
+    PegarDAtos(TextAreaMbetButbol)
 
 End
