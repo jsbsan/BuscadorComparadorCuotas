@@ -332,11 +332,17 @@ Public Function ordenar(texto As String) As String
         'Ordeno: fecha/hora/Equipo1/Casa ->
         'recorto el nombre del equipo 1 para facilitar la ordenacion, y lo añado completo al final para poderlo recuperar
         'caracteres para ordenar por nombre: pongo que coja los 4 primeros (tambien añado espacios por si el nombre es mas corto)
-        lineaOrdenada = nuevalinea[2] & "\t" & nuevalinea[1] & "\t" & Comun.normalizacion(nuevalinea[3]) & "\t" & nuevalinea[0] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\t" & nuevalinea[8] & "\t" & nuevalinea[3]
+        lineaOrdenada = nuevalinea[2] & "\t" & Comun.normalizacion(nuevalinea[3]) & "\t" & nuevalinea[0] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\t" & nuevalinea[8] & "\t" & nuevalinea[3] & "\t" & nuevalinea[1]
+        'la hora la pongo al final (depende de la casa, algunas veces pone horas distintas de inicio del partido)
 
-        'añado a la listaTemporal
-        listaTemporal.add(lineaOrdenada)
+        'comprobación de vacios
+        If nuevalinea[2] & nuevalinea[3] & nuevalinea[7] = "" Then
+            'la linea esta vacia, no la añado...
+        Else
 
+            'añado a la listaTemporal
+            listaTemporal.add(lineaOrdenada)
+        Endif
     Next
 
     'ordeno la lista temporal con las columnas cambiadas
@@ -351,7 +357,10 @@ Public Function ordenar(texto As String) As String
         'a
         '"Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n" -> la 9 tiene el nombre completo
         '   0     1     2      3        4       5       6        7      8
-        lineaOrdenada = nuevalinea[3] & "\t" & nuevalinea[1] & "\t" & nuevalinea[0] & "\t" & nuevalinea[9] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\t" & nuevalinea[8] & "\n"
+        'y la diez contiene la hora
+        'ORDENOR POR:
+        ' FECHA (3),
+        lineaOrdenada = nuevalinea[2] & "\t" & nuevalinea[9] & "\t" & nuevalinea[0] & "\t" & nuevalinea[8] & "\t" & nuevalinea[3] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\n"
 
         TextoOrdenado &= lineaOrdenada
     Next
