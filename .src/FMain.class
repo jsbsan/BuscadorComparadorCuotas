@@ -332,7 +332,7 @@ Public Function ordenar(texto As String) As String
         'Ordeno: fecha/hora/Equipo1/Casa ->
         'recorto el nombre del equipo 1 para facilitar la ordenacion, y lo añado completo al final para poderlo recuperar
         'caracteres para ordenar por nombre: pongo que coja los 4 primeros (tambien añado espacios por si el nombre es mas corto)
-        lineaOrdenada = nuevalinea[2] & "\t" & Comun.normalizacion(nuevalinea[3]) & "\t" & nuevalinea[0] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\t" & nuevalinea[8] & "\t" & nuevalinea[3] & "\t" & nuevalinea[1]
+        lineaOrdenada = Upper$(nuevalinea[2]) & "\t" & Comun.normalizacion(nuevalinea[3]) & "\t" & nuevalinea[0] & "\t" & nuevalinea[4] & "\t" & nuevalinea[5] & "\t" & nuevalinea[6] & "\t" & nuevalinea[7] & "\t" & nuevalinea[8] & "\t" & nuevalinea[3] & "\t" & nuevalinea[1]
         'la hora la pongo al final (depende de la casa, algunas veces pone horas distintas de inicio del partido)
 
         'comprobación de vacios

@@ -26,7 +26,7 @@ Public Function normalizacion(NombreEquipo As String) As String
 
     NombreEquipo &= "    " 'añado algunos espacios para que no de problemas el mid
 
-    Return Mid$(NombreEquipo, 1, 4)
+    Return Mid$(NombreEquipo, 1, 5)
 
 End
 
@@ -43,6 +43,6 @@ Public Sub ConvierteFechaLuckia(textofecha As String) As String
         textofecha = Replace(textofecha, broken, MesesTexto[a])
     Next
 
-    Return textofecha
+    Return Upper$(textofecha)
 
 End
