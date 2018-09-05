@@ -16,7 +16,7 @@ Public Function normalizacion(NombreEquipo As String) As String
     Dim tokens As String
 
     'trozos de palabras a quitar para normalizar nombre
-    PalabrasQuitar = ["REAL ", "DEPORTIVO ", "R.", "R. ", "D.", "D.", "DEPORTIVO", "RC ", "CF", "RDC ", "RDC", "MANCHESTER ", "MAN "]
+    PalabrasQuitar = ["REAL ", "DEPORTIVO ", "R.", "R. ", "D.", "D. ", "DEPORTIVO", "RC ", "CF", "RDC ", "RDC", "MANCHESTER ", "MAN ", "UP ", "SD ", "SCD ", "CD ", "UE ", "ATLETICO ", "ATLETICO", "ATLÉTICO ", "ATLÉTICO", "ATLéTICO ", "ATLéTICO", "UD ", "FC "]
 
     NombreEquipo = Upper(NombreEquipo)
 
