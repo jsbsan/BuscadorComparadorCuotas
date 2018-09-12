@@ -24,6 +24,8 @@ Public Function normalizacion(NombreEquipo As String) As String
         NombreEquipo = Replace(NombreEquipo, tokens, "")
     Next
 
+    NombreEquipo = Replace(NombreEquipo, "UTD", "UNITED")
+
     NombreEquipo &= "    " 'añado algunos espacios para que no de problemas el mid
 
     Return Mid$(NombreEquipo, 1, 5)
