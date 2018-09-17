@@ -2,6 +2,7 @@
 
 Public Sub Form_Open()
 
+    TextLabelVersion.text = "Versión: " & Application.Version
     defineGridViewSportiumFutbol()
     defineGridViewMbetFutbol()
     defineGridViewWillianHillFutbol()

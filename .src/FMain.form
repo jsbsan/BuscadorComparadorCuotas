@@ -240,4 +240,9 @@
     MoveScaled(26,57,6,7)
     Picture = Picture["icon:/16/paste"]
   }
+  { TextLabelVersion TextLabel
+    MoveScaled(92,1,18,4)
+    Expand = True
+    AutoResize = True
+  }
 }
