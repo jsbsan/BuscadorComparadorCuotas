@@ -8,12 +8,37 @@ Public Sub Form_Open()
     defineGridViewWillianHillFutbol()
     defineGridViewLuckiaFutbol()
     defineGridViewGoldenFutbol()
+    defineGridViewBetStars()
 
 End
 
 Public Sub defineGridViewGoldenFutbol()
 
     With GridViewGoldenPark
+        .header = 3
+        .rows.count = 0
+        .columns.count = 9
+        .Columns[0].title = "E"
+        .Columns[1].title = "Hora"
+        .Columns[2].title = "Fecha"
+        .Columns[3].title = "Equipo1"
+        .Columns[4].title = "Cuota 1"
+        .Columns[5].title = "Empate"
+        .Columns[6].title = "Cuota X"
+        .Columns[7].title = "Equipo2"
+        .Columns[8].title = "Cuota 2"
+        .columns[7].width = 150
+        .columns[3].width = 150
+        .font.name = "Sans"
+        .font.size = 9
+
+    End With
+
+End
+
+Public Sub defineGridViewBetStars()
+
+    With GridViewBetStars
         .header = 3
         .rows.count = 0
         .columns.count = 9
@@ -210,8 +235,11 @@ Public Sub ButtonLeerDatosMBETFutbol_Click()
     Dim DatosCuotas As String[]
     Dim Sintabulador As String
 
-    lineas = Split(TextAreaMbetButbol.text, "\n")
+    If Mid$(TextAreaMbetButbol.text, 1, 1) = "\n" Then
+        TextAreaMbetButbol.text = Mid$(TextAreaMbetButbol.text, 2, Len(TextAreaMbetButbol.text))
+    Endif
 
+    lineas = Split(TextAreaMbetButbol.text, "\n")
     ''estructura de los datos de sportium 16/08/2018
     ' linea1:
     ' 	1. nombre
@@ -854,5 +882,133 @@ End
 Public Sub ButtonPegarMbet_Click()
 
     PegarDAtos(TextAreaMbetButbol)
+
+End
+
+Public Sub ButtonGridLimpiarBetStars_Click()
+
+    GridViewBetStars.Rows.count = 0
+
+End
+
+Public Sub ButtonLimpiarBetStars_Click()
+
+    TextAreaBetStarsFutbol.text = ""
+    GridViewBetStars.Rows.count = 0
+
+End
+
+Public Sub ButtonPegarBetStars_Click()
+
+    PegarDAtos(TextAreaBetStarsFutbol)
+
+End
+
+Public Sub ButtonCombinarGoldenParkMBet2_Click()
+
+    Combinar(GridViewBetStars)
+
+End
+
+Public Sub ButtonLeerDatosBetStars_Click()
+
+    Dim lineas As String[]
+    Dim contador As Integer
+    Dim fila As Integer
+    Dim equipos As New String[]
+    Dim inicialLetra As String
+    Dim fechaactual As String
+
+    lineas = Split(TextAreaBetStarsFutbol.text, "\n")
+
+    ''estructura de los datos de betstar 21/09/2018
+    ' Resultado del partido
+    ' fecha "vie. 21 sep." ->"vie.","sáb","dom","lun","mar.","mié.","jue."
+    ' Local
+    ' Empate
+    ' Visitante
+    ' nombre1
+    ' nombre2
+    ' apuestas_rapida
+    'cuota1
+    'cuotaX
+    'cuotaY
+    'hora (quita espacio blanco delante, y quedarse con los 5 primeros caracteres)
+    'y si hay un mismo partido en ese dia, pone nombre del partido, sino pasa al siguiente dia'
+
+    'borro la primera linea "Destacados 1 X 2'
+    If lineas[0] = "Resultado del partido" Then
+        lineas.delete(0)
+    Endif
+
+    contador = -1
+
+    While (contador < (lineas.Count - 1))
+        fila += 1
+        contador += 1
+
+        GridViewBetStars.rows.count = fila + 1
+        Comun.limpiaFilaActual(GridViewBetStars, fila)
+
+        Try GridViewBetStars[fila - 1, 0].text = "0_BetStars" 'Casa de Apuesta
+
+        'si primera letra es nombre de dia, es una fecha la linea, sino, es una hora...
+        inicialLetra = Upper$(Mid$(lineas[contador], 1, 1))
+        If esletra(inicialLetra) = True Then
+
+            'se trada de una fecha
+            Try GridViewBetStars[fila - 1, 2].text = Trim(String.Mid$(lineas[contador], 5, 7)) 'fecha -> cambiar mes por numero
+            fechaactual = String.Mid$(lineas[contador], 5, 7)
+        Else
+            'se trada de una hora
+            ''Try GridViewBetStars[fila - 1, 1].text = Mid$(Trim(lineas[contador]), 1, 6) 'hora
+            Try GridViewBetStars[fila - 1, 2].text = Trim(fechaactual)
+
+        Endif
+
+        If String.Mid$(lineas[contador], 1, 1) = " " Then contador -= 1 'por si es un nombre de equipo, ya que lleva delante un espacio.
+
+        contador += 1
+        'elimino Local Empate Visistante'
+        If lineas[contador] = "Local" Then lineas.delete(contador)
+        If lineas[contador] = "Empate" Then lineas.delete(contador)
+        If lineas[contador] = "Visitante" Then lineas.delete(contador)
+
+        equipos.Clear()
+        Try GridViewBetStars[fila - 1, 3].text = Trim(lineas[contador]) 'nombre1
+
+        contador += 1
+        Try GridViewBetStars[fila - 1, 7].text = Trim(lineas[contador]) 'nombre2
+
+        contador += 1
+        'linea de apuestas rapida
+        'puede que no halla... lo compruebo:
+        If InStr(lineas[contador], ".") <> 0 Then contador -= 1 ' es una cuota, no descuento la linea
+
+        contador += 1
+        Try GridViewBetStars[fila - 1, 4].text = lineas[contador] 'cuota1
+
+        contador += 1
+        Try GridViewBetStars[fila - 1, 6].text = lineas[contador] 'cuotax
+
+        contador += 1
+        Try GridViewBetStars[fila - 1, 8].text = lineas[contador] 'cuota2
+        contador += 1
+        Try GridViewBetStars[fila - 1, 1].text = Mid$(Trim(lineas[contador]), 1, 6) 'hora
+    Wend
+
+    TextAreaBetStarsFutbol.pos = 1
+
+End
+
+Private Function esletra(inicialLetra As String) As Boolean
+
+    If inicialLetra = "L" Then Return True
+    If inicialLetra = "M" Then Return True
+    If inicialLetra = "J" Then Return True
+    If inicialLetra = "V" Then Return True
+    If inicialLetra = "S" Then Return True
+    If inicialLetra = "D" Then Return True
+    Return False
 
 End

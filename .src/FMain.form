@@ -11,12 +11,12 @@
     ToolTip = ("Los datos pegados deben de empezar por el nombre del equipo")
   }
   { ButtonLeerDatosMBETFutbol Button
-    MoveScaled(39,56,15,7)
+    MoveScaled(49,55,15,7)
     Text = ("Leer")
     Picture = Picture["icon:/32/make"]
   }
   { ButtonCombinarSportiumMbet Button
-    MoveScaled(1,87,28.5714,6.4286)
+    MoveScaled(1,87,24,7.1429)
     Text = ("Sportium - MBET al \nportapapeles")
     Picture = Picture["IconoPequeñoSportium.png"]
   }
@@ -32,7 +32,7 @@
   }
   { TabStrip1 TabStrip
     MoveScaled(1,6,142,41)
-    Count = 5
+    Count = 6
     Index = 0
     Text = ("Sportium")
     Picture = Picture["IconoPequeñoSportium.png"]
@@ -201,6 +201,39 @@
       MoveScaled(24,11,6,7)
       Picture = Picture["icon:/16/paste"]
     }
+    Index = 5
+    Text = ("BetStars")
+    Picture = Picture["betstarEstrella.png"]
+    { PictureBox7 PictureBox
+      MoveScaled(0,0,38,10)
+      Picture = Picture["betstarGrande.png"]
+      Stretch = True
+    }
+    { TextAreaBetStarsFutbol TextArea
+      MoveScaled(1,11,29,25)
+    }
+    { ButtonPegarBetStars Button
+      MoveScaled(24,11,6,7)
+      Picture = Picture["icon:/16/paste"]
+    }
+    { GridViewBetStars GridView
+      MoveScaled(32,11,109,24)
+    }
+    { ButtonLeerDatosBetStars Button
+      MoveScaled(46,2,15,8)
+      Text = ("Leer")
+      Picture = Picture["icon:/32/make"]
+    }
+    { ButtonGridLimpiarBetStars Button
+      MoveScaled(76,2,20,8)
+      Text = ("Regilla")
+      Picture = Picture["icon:/48/clear"]
+    }
+    { ButtonLimpiarBetStars Button
+      MoveScaled(109,2,28,8)
+      Text = ("Borrar datos") & "..."
+      Picture = Picture["icon:/48/trash"]
+    }
     Index = 0
   }
   { TextLabel1 TextLabel
@@ -217,22 +250,22 @@
     Picture = Picture["icon:/48/clear"]
   }
   { ButtonCombinarWillianHIllMbet Button
-    MoveScaled(30,87,28.5714,6.4286)
+    MoveScaled(25,87,24,7.1429)
     Text = ("Willianhill - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoWillianHIll.png"]
   }
   { ButtonCombinarLuckiaMbet Button
-    MoveScaled(59,87,28.5714,6.4286)
+    MoveScaled(49,87,24,7.1429)
     Text = ("Luckia - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoLuckia.png"]
   }
   { ButtonCombinarCodereMbet Button
-    MoveScaled(88,87,28.5714,6.4286)
+    MoveScaled(73,87,24,7.1429)
     Text = ("Codere - MBet  al\nportapapeles")
     Picture = Picture["iconoPequeñoCodere.png"]
   }
   { ButtonCombinarGoldenParkMBet Button
-    MoveScaled(117,87,28.5714,6.4286)
+    MoveScaled(97,87,24,7.1429)
     Text = ("GodenPark - MBet  \nal portapapeles")
     Picture = Picture["iconoPequeñoGoldenPark.png"]
   }
@@ -244,5 +277,10 @@
     MoveScaled(92,1,18,4)
     Expand = True
     AutoResize = True
+  }
+  { ButtonCombinarGoldenParkMBet2 Button
+    MoveScaled(121,87,24,7.1429)
+    Text = ("BetStars - MBet  \nal portapapeles")
+    Picture = Picture["betstarEstrella.png"]
   }
 }

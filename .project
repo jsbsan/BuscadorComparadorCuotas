@@ -2,11 +2,12 @@
 Title=BuscadorComparadorCuotas
 Startup=FMain
 Icon=icono1x2.png
-Version=0.0.5
+Version=0.0.6
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form
 Description="Sistema Para extraer cuotas 1x2 de futbol de distintas paginas web y pasarlas al portapapeles para leerlos en una hoja de calculo"
+Authors="Julio Sanchez Berro (jsbsan)"
 TabSize=4
 Language=en_US
 SourcePath=/home/mint/analisis de apuestas
