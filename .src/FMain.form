@@ -3,6 +3,7 @@
 { Form Form
   MoveScaled(0,0,146,95)
   Icon = Picture["icono1x2.png"]
+  Resizable = False
   { GridViewMBetFutbol GridView
     MoveScaled(34,64,108,20)
   }

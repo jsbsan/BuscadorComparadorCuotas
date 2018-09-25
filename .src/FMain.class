@@ -553,8 +553,8 @@ Public Sub ButtonLeerDatosWillianHill_Click()
 
         contador += 1 ' Estadísticas
         Try lineaAnalizar = lineas[contador]
-        If Mid$(lineaAnalizar, 1, 5) = " Esta" Then
-            'hay estadisticas
+        If Mid$(lineaAnalizar, 1, 5) = " Esta" Or Mid$(lineaAnalizar, 1, 3) = "TV\t" Then
+            'hay estadisticas y/o linea de television
         Else
             contador -= 1
         Endif
