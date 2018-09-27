@@ -2,7 +2,7 @@
 Title=BuscadorComparadorCuotas
 Startup=FMain
 Icon=icono1x2.png
-Version=0.0.6
+Version=0.0.8
 Component=gb.image
 Component=gb.gui.qt
 Component=gb.form
@@ -15,7 +15,7 @@ Maintainer=jsbsan
 Address=jusabejusabe@gmail.com
 Url=http://www.jsbsan.blogspot.com
 License=General Public License
-PackageName=buscadorcomparadorcuotas-0.0.6
+PackageName=buscadorcomparadorcuotas-0.0.8
 CreateEachDirectory=1
 Packager=1
 Systems=debian
