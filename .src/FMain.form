@@ -2,17 +2,18 @@
 
 { Form Form
   MoveScaled(0,0,146,95)
+  Background = &H3F9FFF&
   Icon = Picture["icono1x2.png"]
   Resizable = False
   { GridViewMBetFutbol GridView
-    MoveScaled(34,64,108,20)
+    MoveScaled(34,64,111,20)
   }
   { TextAreaMbetButbol TextArea
     MoveScaled(1,57,31,29)
     ToolTip = ("Los datos pegados deben de empezar por el nombre del equipo")
   }
   { ButtonLeerDatosMBETFutbol Button
-    MoveScaled(49,55,15,7)
+    MoveScaled(49,55,15,8)
     Text = ("Leer")
     Picture = Picture["icon:/32/make"]
   }
@@ -32,7 +33,7 @@
     Stretch = True
   }
   { TabStrip1 TabStrip
-    MoveScaled(1,6,142,41)
+    MoveScaled(1,6,144,41)
     Count = 6
     Index = 0
     Text = ("Sportium")
@@ -47,20 +48,20 @@
       ToolTip = ("Los datos pegados deben de empezar por una estrella")
     }
     { GridViewSportiumFutbol GridView
-      MoveScaled(30,12,109,22)
+      MoveScaled(30,12,112,24)
     }
     { ButtonLeerDatosSportium Button
-      MoveScaled(44,2,15,7)
+      MoveScaled(46,2,15,8)
       Text = ("Leer")
       Picture = Picture["icon:/32/make"]
     }
     { ButtonLimpiarSportium Button
-      MoveScaled(110,2,28,8)
+      MoveScaled(109,2,28,8)
       Text = ("Borrar datos") & "..."
       Picture = Picture["icon:/48/trash"]
     }
     { ButtonGridLimpiarWillianhill3 Button
-      MoveScaled(79,2,20,8)
+      MoveScaled(76,2,20,8)
       Text = ("Regilla")
       Picture = Picture["icon:/48/clear"]
     }
@@ -77,35 +78,35 @@
       Stretch = True
     }
     { TextAreaWillianHIll TextArea
-      MoveScaled(1,11,29,25)
+      MoveScaled(0,10,29,25)
     }
     { GridViewWillianHillFutbol GridView
-      MoveScaled(32,13,109,22)
+      MoveScaled(30,12,112,24)
     }
     { ButtonLeerDatosWillianHill Button
-      MoveScaled(46,3,15,7)
+      MoveScaled(46,2,15,8)
       Text = ("Leer")
       Picture = Picture["icon:/32/make"]
     }
     { ButtonLimpiarWillianHill Button
-      MoveScaled(109,3,28,8)
+      MoveScaled(109,2,28,8)
       Text = ("Borrar datos") & "..."
       Picture = Picture["icon:/48/trash"]
     }
     { ButtonGridLimpiarWillianhill Button
-      MoveScaled(76,3,20,8)
+      MoveScaled(76,2,20,8)
       Text = ("Regilla")
       Picture = Picture["icon:/48/clear"]
     }
     { ButtonPegarWillianHIll Button
-      MoveScaled(24,11,6,7)
+      MoveScaled(23,10,6,7)
       Picture = Picture["icon:/16/paste"]
     }
     Index = 2
     Text = ("Luckia")
     Picture = Picture["IconoPequeñoLuckia.png"]
     { TextAreaLuckiaFutbol TextArea
-      MoveScaled(1,11,29,25)
+      MoveScaled(0,10,29,25)
     }
     { PictureBox4 PictureBox
       MoveScaled(0,0,38,10)
@@ -113,25 +114,25 @@
       Stretch = True
     }
     { GridViewLuckiaFutbol GridView
-      MoveScaled(32,13,109,22)
+      MoveScaled(30,12,112,24)
     }
     { ButtonLeerDatosLuckia Button
-      MoveScaled(46,3,15,7)
+      MoveScaled(46,2,15,8)
       Text = ("Leer")
       Picture = Picture["icon:/32/make"]
     }
     { ButtonGridLimpiarLuckia Button
-      MoveScaled(76,3,20,8)
+      MoveScaled(76,2,20,8)
       Text = ("Regilla")
       Picture = Picture["icon:/48/clear"]
     }
     { ButtonLimpiarLuckia Button
-      MoveScaled(109,3,28,8)
+      MoveScaled(109,2,28,8)
       Text = ("Borrar datos") & "..."
       Picture = Picture["icon:/48/trash"]
     }
     { ButtonPegarLuckia Button
-      MoveScaled(24,11,6,7)
+      MoveScaled(23,10,6,7)
       Picture = Picture["icon:/16/paste"]
     }
     Index = 3
@@ -149,17 +150,17 @@
       MoveScaled(32,13,109,22)
     }
     { ButtonLeerDatosCodere Button
-      MoveScaled(46,4,15,7)
+      MoveScaled(46,2,15,8)
       Text = ("Leer")
       Picture = Picture["icon:/32/make"]
     }
     { ButtonGridLimpiarCodere Button
-      MoveScaled(76,3,20,8)
+      MoveScaled(76,2,20,8)
       Text = ("Regilla")
       Picture = Picture["icon:/48/clear"]
     }
     { ButtonLimpiarCodere Button
-      MoveScaled(109,3,28,8)
+      MoveScaled(109,2,28,8)
       Text = ("Borrar datos") & "..."
       Picture = Picture["icon:/48/trash"]
     }
@@ -178,10 +179,10 @@
       Stretch = True
     }
     { TextAreaGoldenParkFutbol TextArea
-      MoveScaled(1,11,29,25)
+      MoveScaled(0,10,29,25)
     }
     { GridViewGoldenPark GridView
-      MoveScaled(32,11,109,24)
+      MoveScaled(30,12,112,24)
     }
     { ButtonLeerDatosGoldenPark Button
       MoveScaled(46,2,15,8)
@@ -199,7 +200,7 @@
       Picture = Picture["icon:/48/trash"]
     }
     { ButtonPegarGolden Button
-      MoveScaled(24,11,6,7)
+      MoveScaled(23,10,6,7)
       Picture = Picture["icon:/16/paste"]
     }
     Index = 5
@@ -211,14 +212,14 @@
       Stretch = True
     }
     { TextAreaBetStarsFutbol TextArea
-      MoveScaled(1,11,29,25)
+      MoveScaled(0,10,29,25)
     }
     { ButtonPegarBetStars Button
-      MoveScaled(24,11,6,7)
+      MoveScaled(23,10,6,7)
       Picture = Picture["icon:/16/paste"]
     }
     { GridViewBetStars GridView
-      MoveScaled(32,11,109,24)
+      MoveScaled(30,12,112,24)
     }
     { ButtonLeerDatosBetStars Button
       MoveScaled(46,2,15,8)

@@ -271,6 +271,10 @@ Public Sub ButtonLeerDatosMBETFutbol_Click()
     ' 	\ t
     ' 	cuota2
 
+    If Mid$(lineas[0], 1, 17) = "Nombre del evento" Then
+        lineas.Delete(0)
+    Endif
+
     contador = -1
 
     While (contador < (lineas.Count - 1))
@@ -346,7 +350,7 @@ Public Sub Combinar(gridviewOtro As GridView)
     'el resultado lo copio al portapapeles
     Clipboard.Copy(datosCSV)
 
-    Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
+    FormHECHO.Show()
 
 End
 
