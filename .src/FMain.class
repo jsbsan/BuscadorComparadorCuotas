@@ -528,7 +528,7 @@ Public Sub ButtonLeerDatosWillianHill_Click()
         If lineas[contador] = "Directo" Then
             Try GridViewWillianHillFutbol[fila - 1, 2].text = Format$(Now, "dd mmm") 'fecha
             contador += 1
-            DatoColumnafecha = True Sof ás
+            DatoColumnafecha = True
 
         Endif
 
