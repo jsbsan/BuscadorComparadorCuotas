@@ -27,7 +27,7 @@ Public Function normalizacion(NombreEquipo As String) As String
     Next
 
     'trozos de palabras a quitar para normalizar nombre
-    PalabrasQuitar = ["RCD ", "RCD", "REAL ", "DEPORTIVO ", "R. ", "R.", "D. ", "D.", "DEPORTIVO", "RC ", "CF", "RDC ", "RDC", "MANCHESTER ", "MAN ", "UP ", "SD ", "SCD ", "CD ", "UE ", "ATLETICO ", "ATLETICO", "UD ", "FC ", "CLUB ", "CLUB.", "ATLéTICO ", "ATLÉTICO "]
+    PalabrasQuitar = ["RCD ", "RCD", "REAL ", "DEPORTIVO ", "R. ", "R.", "D. ", "D.", "DEPORTIVO", "RC ", "CF ", "CF", "RDC ", "RDC", "MANCHESTER ", "MAN ", "UP ", "SD ", "SCD ", "CD ", "UE ", "ATLETICO ", "ATLETICO", "UD ", "FC ", "CLUB ", "CLUB.", "ATLéTICO ", "ATLÉTICO ", "AC "]
 
     NombreEquipo = Upper(NombreEquipo)
 
