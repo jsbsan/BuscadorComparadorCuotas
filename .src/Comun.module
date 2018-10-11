@@ -27,7 +27,7 @@ Public Function normalizacion(NombreEquipo As String) As String
     Next
 
     'trozos de palabras a quitar para normalizar nombre
-    PalabrasQuitar = ["RCD ", "RCD", "REAL ", "DEPORTIVO ", "R. ", "R.", "D. ", "D.", "DEPORTIVO", "RC ", "CF ", "CF", "RDC ", "RDC", "MANCHESTER ", "MAN ", "UP ", "SD ", "SCD ", "CD ", "UE ", "ATLETICO ", "ATLETICO", "UD ", "FC ", "CLUB ", "CLUB.", "ATLéTICO ", "ATLÉTICO ", "AC ", "RAYO "]
+    PalabrasQuitar = ["RCD ", "RCD", "REAL ", "DEPORTIVO ", "R. ", "R.", "D. ", "D.", "DEPORTIVO", "RC ", "CF ", "CF", "RDC ", "RDC", "MANCHESTER ", "MAN ", "UP ", "SD ", "SCD ", "CD ", "UE ", "ATLETICO ", "ATLETICO", "UD ", "FC ", "CLUB ", "CLUB.", "ATLéTICO ", "ATLÉTICO ", "AC ", "RAYO ", "REPUBLICA DE "]
 
     NombreEquipo = Upper(NombreEquipo)
 
@@ -36,6 +36,8 @@ Public Function normalizacion(NombreEquipo As String) As String
     Next
 
     NombreEquipo = Replace(NombreEquipo, "UTD", "UNITED")
+    'PAISES BAJOS POR HOLANDA
+    NombreEquipo = Replace(NombreEquipo, "PAISES BAJOS", "HOLANDA")
 
     If InStr(NombreEquipo, "MADRID") <> 0 Then
         NombreEquipo = Trim(Replace(NombreEquipo, "DE ", ""))
