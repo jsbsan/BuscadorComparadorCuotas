@@ -271,10 +271,24 @@ Public Sub ButtonLeerDatosMBETFutbol_Click()
     ' 	\ t
     ' 	cuota2
 
-    If Mid$(lineas[0], 1, 17) = "Nombre del evento" Then
-        lineas.Delete(0)
-    Endif
+    'limpoieza de zona con Nombre del evento y Liga de las Naciones
+    contador = 0
+    While (contador < (lineas.max))
 
+        If Mid$(lineas[contador], 1, 17) = "Nombre del evento" Then
+            lineas.Delete(contador)
+            contador -= 1
+        Else
+            If Mid$(lineas[contador], 1, Len("Liga de las Naciones")) = "Liga de las Naciones" Then
+                lineas.Delete(contador)
+                contador -= 1
+            Endif
+        Endif
+
+        contador += 1
+    Wend
+
+    'empiezo a leer
     contador = -1
 
     While (contador < (lineas.Count - 1))
