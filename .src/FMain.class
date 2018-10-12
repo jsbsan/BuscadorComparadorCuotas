@@ -1079,6 +1079,7 @@ Public Sub ButtonCombinaTodos_Click()
 End
 
 Public Function MicroCombinacion(gridviewOtro As GridView) As String
+    'lee los gridview que me pasan y lo devuelvo en forma de texto el contenido
 
     Dim contador As Integer
     Dim datosCSV As String
