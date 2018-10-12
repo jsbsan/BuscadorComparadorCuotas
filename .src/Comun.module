@@ -37,6 +37,7 @@ Public Function normalizacion(NombreEquipo As String) As String
 
     NombreEquipo = Replace(NombreEquipo, "UTD", "UNITED")
     'PAISES BAJOS POR HOLANDA
+
     NombreEquipo = Replace(NombreEquipo, "PAISES BAJOS", "HOLANDA")
 
     If InStr(NombreEquipo, "MADRID") <> 0 Then

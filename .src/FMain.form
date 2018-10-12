@@ -18,7 +18,8 @@
     Picture = Picture["icon:/32/make"]
   }
   { ButtonCombinarSportiumMbet Button
-    MoveScaled(1,87,24,7.1429)
+    MoveScaled(1,87,21.4286,7.1429)
+    Font = Font["-1"]
     Text = ("Sportium - MBET al \nportapapeles")
     Picture = Picture["IconoPequeñoSportium.png"]
   }
@@ -252,22 +253,26 @@
     Picture = Picture["icon:/48/clear"]
   }
   { ButtonCombinarWillianHIllMbet Button
-    MoveScaled(25,87,24,7.1429)
+    MoveScaled(23,87,21.4286,7.1429)
+    Font = Font["-1"]
     Text = ("Willianhill - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoWillianHIll.png"]
   }
   { ButtonCombinarLuckiaMbet Button
-    MoveScaled(49,87,24,7.1429)
+    MoveScaled(45,87,21.4286,7.1429)
+    Font = Font["-1"]
     Text = ("Luckia - MBet  al\nportapapeles")
     Picture = Picture["IconoPequeñoLuckia.png"]
   }
   { ButtonCombinarCodereMbet Button
-    MoveScaled(73,87,24,7.1429)
+    MoveScaled(67,87,21.4286,7.1429)
+    Font = Font["-1"]
     Text = ("Codere - MBet  al\nportapapeles")
     Picture = Picture["iconoPequeñoCodere.png"]
   }
   { ButtonCombinarGoldenParkMBet Button
-    MoveScaled(97,87,24,7.1429)
+    MoveScaled(89,87,21.4286,7.1429)
+    Font = Font["-1"]
     Text = ("GodenPark - MBet  \nal portapapeles")
     Picture = Picture["iconoPequeñoGoldenPark.png"]
   }
@@ -281,8 +286,14 @@
     AutoResize = True
   }
   { ButtonCombinarGoldenParkMBet2 Button
-    MoveScaled(121,87,24,7.1429)
+    MoveScaled(111,87,21.4286,7)
+    Font = Font["-1"]
     Text = ("BetStars - MBet  \nal portapapeles")
     Picture = Picture["betstarEstrella.png"]
+  }
+  { ButtonCombinaTodos Button
+    MoveScaled(134,87,11,7)
+    Text = ("Todos")
+    Picture = Picture["icon:/22/watch"]
   }
 }

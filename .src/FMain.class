@@ -1043,3 +1043,52 @@ Private Function esletra(inicialLetra As String) As Boolean
     Return False
 
 End
+
+Public Sub ButtonCombinaTodos_Click()
+
+    Dim contador As Integer
+    Dim datosCSV As String
+
+    Clipboard.Clear() 'limpio portapapeles
+    contador = -1
+    '  datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+
+    While (contador < GridViewMBetFutbol.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(GridViewMBetFutbol, contador)
+    Wend
+
+    datosCSV &= MicroCombinacion(GridViewBetStars)
+    datosCSV &= MicroCombinacion(GridViewGoldenPark)
+    datosCSV &= MicroCombinacion(GridViewLuckiaFutbol)
+    datosCSV &= MicroCombinacion(GridViewSportiumFutbol)
+    datosCSV &= MicroCombinacion(GridViewWillianHillFutbol)
+
+    'ordenar filas...
+    datosCSV = ordenar(datosCSV)
+
+    'añado cabecera:
+
+    datosCSV = "Casa\tHora\tFecha\tEquipo1\tCuota1\tEmpate\tCuotaX\tEquipo2\tCuota2\n" & datosCSV
+
+    'el resultado lo copio al portapapeles
+    Clipboard.Copy(datosCSV)
+
+    FormHECHO.Show()
+
+End
+
+Public Function MicroCombinacion(gridviewOtro As GridView) As String
+
+    Dim contador As Integer
+    Dim datosCSV As String
+
+    contador = -1
+    While (contador < gridviewOtro.Rows.Count)
+        contador += 1
+        datosCSV &= textofila(gridviewOtro, contador)
+    Wend
+
+    Return datosCSV
+
+End
