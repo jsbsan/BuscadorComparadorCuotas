@@ -167,7 +167,7 @@ Public Sub ButtonLeerDatosSportium_Click()
     lineas = Split(TextAreaSportiumFutbol.text, "\n")
 
     ''estructura de los datos de sportium 16/08/2018
-    ' estrella
+    ' estrella -> la han quitado 20/10/2018
     ' hora
     ' fecha
     ' espacio
@@ -195,7 +195,7 @@ Public Sub ButtonLeerDatosSportium_Click()
         Comun.limpiaFilaActual(GridViewSportiumFutbol, fila)
 
         Try GridViewSportiumFutbol[fila - 1, 0].text = "0_Sportium" 'EstrellaS
-        contador += 1
+        'contador += 1 -> para quitar la estrella que ya no esta
         Try GridViewSportiumFutbol[fila - 1, 1].text = lineas[contador] 'hora
         contador += 1
         Try GridViewSportiumFutbol[fila - 1, 2].text = lineas[contador] 'fecha
