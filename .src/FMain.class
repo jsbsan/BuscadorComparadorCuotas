@@ -943,6 +943,8 @@ End
 
 Public Sub ButtonLeerDatosBetStars_Click()
 
+    Dim canalTV As String
+    Dim buscopunto As Integer
     Dim lineas As String[]
     Dim contador As Integer
     Dim fila As Integer
@@ -1006,15 +1008,18 @@ Public Sub ButtonLeerDatosBetStars_Click()
         If lineas[contador] = "Visitante" Then lineas.delete(contador)
 
         equipos.Clear()
+
         Try GridViewBetStars[fila - 1, 3].text = Trim(lineas[contador]) 'nombre1
 
         contador += 1
+
         Try GridViewBetStars[fila - 1, 7].text = Trim(lineas[contador]) 'nombre2
 
         contador += 1
         'linea de apuestas rapida
         'puede que no halla... lo compruebo:
-        If InStr(lineas[contador], ".") <> 0 Then contador -= 1 ' es una cuota, no descuento la linea
+        Try BuscoPunto = InStr(lineas[contador], ".")
+        If BuscoPunto <> 0 Then contador -= 1 ' es una cuota, no descuento la linea
 
         contador += 1
         Try GridViewBetStars[fila - 1, 4].text = lineas[contador] 'cuota1
@@ -1026,6 +1031,15 @@ Public Sub ButtonLeerDatosBetStars_Click()
         Try GridViewBetStars[fila - 1, 8].text = lineas[contador] 'cuota2
         contador += 1
         Try GridViewBetStars[fila - 1, 1].text = Mid$(Trim(lineas[contador]), 1, 6) 'hora
+        contador += 1 'canal que se televisa
+        Try canalTV = Upper$(lineas[contador])
+        If canalTV = "BEIN LALIGA" Or canalTV = "MOVISTAR PARTIDAZO" Or canalTV = "GOL TELEVISION" Then
+        Else
+            CONTADOR -= 1 'NO HAY CANAL TE
+        Endif
+
+        contador += 1 'nuero de apeustas
+        If Error Then Break 'salgo del bucle
     Wend
 
     TextAreaBetStarsFutbol.pos = 1
