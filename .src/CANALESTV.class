@@ -1,0 +1,20 @@
+' Gambas class file
+
+Create Static
+
+Public Sub COMPROBAR(dato As String) As Boolean
+
+    Dim ListaCanales As String[]
+    Dim c As String
+
+    ListaCanales = Split(File.load("canalestv.txt"), "\n")
+
+    For Each c In ListaCanales
+        If Upper$(c) = Upper$(dato) Then
+            Return True
+        Endif
+    Next
+
+    Return False
+
+End

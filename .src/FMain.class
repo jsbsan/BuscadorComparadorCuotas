@@ -1033,7 +1033,10 @@ Public Sub ButtonLeerDatosBetStars_Click()
         Try GridViewBetStars[fila - 1, 1].text = Mid$(Trim(lineas[contador]), 1, 6) 'hora
         contador += 1 'canal que se televisa
         Try canalTV = Upper$(lineas[contador])
-        If canalTV = "BEIN LALIGA" Or canalTV = "MOVISTAR PARTIDAZO" Or canalTV = "GOL TELEVISION" Then
+        If CANALESTV.COMPROBAR(canalTV) Then
+
+            'TIENE LINEA DE CANALES TV
+
         Else
             CONTADOR -= 1 'NO HAY CANAL TE
         Endif
