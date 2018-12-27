@@ -164,6 +164,10 @@ Public Sub ButtonLeerDatosSportium_Click()
     Dim HayEstadisticas As String
     Dim comprobarLinea As String
 
+    'REEMEPLAAR ESTRELLA POR NADA
+    TextAreaSportiumFutbol.TEXT = Replace(TextAreaSportiumFutbol.TEXT, "★\t", "")
+    TextAreaSportiumFutbol.pos = 1
+
     lineas = Split(TextAreaSportiumFutbol.text, "\n")
 
     ''estructura de los datos de sportium 16/08/2018
@@ -196,6 +200,7 @@ Public Sub ButtonLeerDatosSportium_Click()
 
         Try GridViewSportiumFutbol[fila - 1, 0].text = "0_Sportium" 'EstrellaS
         'contador += 1 -> para quitar la estrella que ya no esta
+        If lineas[contador] = "" Then contador += 1
         Try GridViewSportiumFutbol[fila - 1, 1].text = lineas[contador] 'hora
         contador += 1
         Try GridViewSportiumFutbol[fila - 1, 2].text = lineas[contador] 'fecha
