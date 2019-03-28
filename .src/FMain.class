@@ -690,6 +690,8 @@ Public Sub ButtonLeerDatosLuckia_Click()
 
         Try GridViewLuckiaFutbol[fila - 1, 0].text = "0_Luckia" 'Estrellas 1º columna
 
+        If lineas[contador] = "" Then contador += 1 'leido dato vacio, creo que es boton de estadistica...
+
         Try GridViewLuckiaFutbol[fila - 1, 2].text = Comun.ConvierteFechaLuckia(lineas[contador]) 'fecha
 
         contador += 1
