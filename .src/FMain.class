@@ -305,7 +305,7 @@ Public Sub ButtonLeerDatosMBETFutbol_Click()
         contador += 1
         Try datoLinea1 = lineas[contador]
 
-        Try GridViewMBetFutbol[fila - 1, 3].text = Mid$(datoLinea1, 3, InStr(datoLinea1, "\t") - 3) 'nombre1 'le quito el 1.
+        Try GridViewMBetFutbol[fila - 1, 3].text = LTrim(Mid$(datoLinea1, 3, InStr(datoLinea1, "\t") - 3)) 'nombre1 'le quito el 1.
 
         'Para saber si tiene puesto la fecha o no"
 
@@ -321,7 +321,7 @@ Public Sub ButtonLeerDatosMBETFutbol_Click()
 
         'Analisis linea2
         contador += 1
-        Try GridViewMBetFutbol[fila - 1, 7].text = Mid$(lineas[contador], 3, Len(lineas[contador])) 'nombre2' le quito el 2.
+        Try GridViewMBetFutbol[fila - 1, 7].text = LTrim(Mid$(lineas[contador], 3, Len(lineas[contador]))) 'nombre2' le quito el 2.
 
         'Analisis linea3
         contador += 1
