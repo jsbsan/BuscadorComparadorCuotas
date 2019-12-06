@@ -1,0 +1,15 @@
+' Gambas class file
+
+Public equipo1 As String
+Public equipo2 As String
+Public cuota1 As String
+Public cuota2 As String
+Public cuotaX As String
+Public hora As String
+Public fecha As String
+
+Public Function paso() As String
+
+    Return "00" & "\t" & Me.hora & "\t" & Me.fecha & "\t" & Me.equipo1 & "\t" & Me.cuota1 & "\t" & "empate" & "\t" & Me.cuotaX & "\t" & Me.equipo2 & "\t" & Me.cuota2 & "\n"
+
+End

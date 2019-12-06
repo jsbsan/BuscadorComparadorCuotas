@@ -35,7 +35,7 @@
   }
   { TabStrip1 TabStrip
     MoveScaled(1,6,144,41)
-    Count = 6
+    Count = 7
     Index = 0
     Text = ("Sportium")
     Picture = Picture["IconoPequeñoSportium.png"]
@@ -118,7 +118,7 @@
       MoveScaled(30,12,112,24)
     }
     { ButtonLeerDatosLuckia Button
-      MoveScaled(46,2,15,8)
+      MoveScaled(58,2,15,8)
       Text = ("Leer")
       Picture = Picture["icon:/32/make"]
     }
@@ -135,6 +135,15 @@
     { ButtonPegarLuckia Button
       MoveScaled(23,10,6,7)
       Picture = Picture["icon:/16/paste"]
+    }
+    { CheckBoxLuckiaEstadisticas CheckBox
+      MoveScaled(39,3,17,4)
+      Font = Font["-1"]
+      Text = ("Icono estadisticas")
+    }
+    { ButtonCopyGridLuckia Button
+      MoveScaled(136,31,6,5)
+      Picture = Picture["icon:/22/copy"]
     }
     Index = 3
     Text = ("Codere")
@@ -236,6 +245,35 @@
       MoveScaled(109,2,28,8)
       Text = ("Borrar datos") & "..."
       Picture = Picture["icon:/48/trash"]
+    }
+    Index = 6
+    Text = ("Patrón Definido")
+    Picture = Picture["icon:/22/book"]
+    { TextAreaDatos TextArea
+      MoveScaled(2,1,42,34)
+    }
+    { ButtonPegarPatron Button
+      MoveScaled(39,1,5,5)
+      Picture = Picture["icon:/22/paste"]
+    }
+    { TextAreaDefinicion TextArea
+      MoveScaled(48,5,30,30)
+      Background = &HFFFF00&
+    }
+    { Label2 Label
+      MoveScaled(49,1,14,4)
+      Text = ("Patrón Definido:")
+    }
+    { ComboBox1 ComboBox
+      MoveScaled(64,1,14,4)
+    }
+    { ButtonLeerDatosPatron Button
+      MoveScaled(79,1,23,4)
+      Text = ("Asignar según Patrón")
+    }
+    { TextAreaResultado TextArea
+      MoveScaled(80,7,63,28)
+      Background = &HFFFF00&
     }
     Index = 0
   }

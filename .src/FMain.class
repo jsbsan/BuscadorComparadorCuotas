@@ -709,27 +709,28 @@ Public Sub ButtonLeerDatosLuckia_Click()
 
         Try GridViewLuckiaFutbol[fila - 1, 0].text = "0_Luckia" 'Estrellas 1º columna
 
+        ' If estadistica = True Then
         If lineas[contador] = "" Then contador += 1 'leido dato vacio, creo que es boton de estadistica...
+        If CheckBoxLuckiaEstadisticas.value = True Then
+            contador += 1
+        Endif
+        ' Endif
+        contador += 1 'equipo 1
+        contador += 1 'equipo 2
 
         Try GridViewLuckiaFutbol[fila - 1, 2].text = Comun.ConvierteFechaLuckia(lineas[contador]) 'fecha
 
+        contador += 1 'hora
+        Try GridViewLuckiaFutbol[fila - 1, 1].text = lineas[contador] 'hora
+
+        contador += 1 'espacio vacio
         contador += 1
         Try GridViewLuckiaFutbol[fila - 1, 3].text = lineas[contador] 'nombre1
 
         contador += 1
-        Try GridViewLuckiaFutbol[fila - 1, 1].text = lineas[contador] 'hora
-
-        contador += 1
-        Try GridViewLuckiaFutbol[fila - 1, 7].text = lineas[contador] 'nombre2
-
-        contador += 1  'espacio
-
-        contador += 1  'equipo 1 repetido
-
-        contador += 1
         Try GridViewLuckiaFutbol[fila - 1, 4].text = lineas[contador] 'cuota1
 
-        contador += 1  'espacio
+        contador += 1 'espacio
 
         contador += 1
         Try GridViewLuckiaFutbol[fila - 1, 5].text = "Empate" 'lineas[contador] 'empate texto
@@ -737,9 +738,9 @@ Public Sub ButtonLeerDatosLuckia_Click()
         contador += 1
         Try GridViewLuckiaFutbol[fila - 1, 6].text = lineas[contador] 'cuotax
 
-        contador += 1  'espacio
-
-        contador += 1 'nombre repetido equipo 2
+        contador += 1 'espacio
+        contador += 1
+        Try GridViewLuckiaFutbol[fila - 1, 7].text = lineas[contador] 'nombre2
 
         contador += 1
         Try GridViewLuckiaFutbol[fila - 1, 8].text = lineas[contador] 'cuota2
@@ -1134,5 +1135,100 @@ Public Function MicroCombinacion(gridviewOtro As GridView) As String
     Wend
 
     Return datosCSV
+
+End
+
+Public Sub ButtonCopyGridLuckia_Click()
+
+    Dim fila, columna As Integer
+    Dim grid As GridView = GridViewLuckiaFutbol
+    Dim contenido As String
+
+    For fila = 0 To grid.Rows.count - 1
+        For columna = 0 To grid.columns.count - 1
+            contenido &= grid[fila, columna].text & "\t"
+        Next
+        contenido &= "\n"
+    Next
+
+    Clipboard.Copy(contenido)
+
+End
+
+Public Sub ButtonPegarPatron_Click()
+
+    TextAreaDatos.text = Clipboard.Paste()
+
+End
+
+Public Sub ButtonLeerDatosPatron_Click()
+
+    Dim lineasPatron As String[]
+    Dim datos As String[]
+    Dim leerPatron As Integer
+    Dim Contadorlineasdatos As Integer
+    Dim lineasdatos As Integer
+    Dim dl As New ClassDatosCuotas
+    Dim dat As String
+    Dim ordenPatron As String
+
+    lineasPatron = Split(TextAreaDefinicion.text, "\n")
+    Datos = Split(TextAreaDatos.text, "\n")
+    'repitir hasta finalizar lineas definidas o terminar patron
+
+    lineasdatos = 0
+
+    For leerPatron = 0 To LineasPatron.count - 1
+        Try dat = Datos[Contadorlineasdatos]
+        If Error Then
+            'hemos llegado al fin de las lineas
+            Break
+        Endif
+        ordenPatron = lineasPatron[leerPatron]
+        Select Case ordenPatron
+            Case "end"
+                TextAreaResultado.text &= dl.paso()
+                dl = New ClassDatosCuotas
+                leerpatron = 0
+                Contadorlineasdatos += 1
+            Case "comentario"
+                Contadorlineasdatos += 1
+                Continue
+
+            Case "rem"
+                Contadorlineasdatos += 1
+                Continue
+            Case "equipo1"
+                dl.equipo1 = dat
+                Contadorlineasdatos += 1
+                Continue
+            Case "equipo2"
+                dl.equipo2 = dat
+                Contadorlineasdatos += 1
+                Continue
+            Case "cuota1"
+                dl.cuota1 = dat
+                Contadorlineasdatos += 1
+                Continue
+            Case "cuota2"
+                dl.cuota2 = dat
+                Contadorlineasdatos += 1
+                Continue
+
+            Case "cuotax"
+                dl.cuotax = dat
+                Contadorlineasdatos += 1
+                Continue
+            Case "hora"
+                dl.hora = dat
+                Contadorlineasdatos += 1
+                Continue
+            Case "fecha"
+                dl.fecha = dat
+                Contadorlineasdatos += 1
+                Continue
+        End Select
+
+    Next
 
 End
