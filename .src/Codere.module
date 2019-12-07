@@ -1,0 +1,120 @@
+' Gambas module file
+
+Public Function unirNombres(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+    Dim a As Integer
+
+    t = Replace(t, " & ", "_")
+    tokens = Split(t, " ")
+
+    For a = 0 To tokens.count - 3
+        If tokens[a] = "" Then Continue
+        If IsLetter(Right(tokens[a], 1)) And IsLetter(Right(tokens[a + 1], 1)) Then
+            tokens[a] = tokens[a] & "_" & tokens[a + 1]
+            tokens.Delete(a + 1)
+        Endif
+
+    Next
+
+    Return tokens.Join(" ")
+
+End
+
+Public Function convierteFechaCodere(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = Right("0" & tokens[0], 2) & " " & tokens[1]
+
+    Return Upper$(cadena)
+
+End
+
+Public Function ConvierteHORA(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = tokens[2]
+    Return cadena
+
+End
+
+Public Function equipo1(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = tokens[0]
+    Return cadena
+
+End
+
+Public Function cuota1(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = tokens[1]
+    Return cadena
+
+End
+
+Public Function empate(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = tokens[3]
+    Return cadena
+
+End
+
+Public Function equipo2(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = tokens[4]
+    Return cadena
+
+End
+
+Public Function cuota2(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = tokens[5]
+    Return cadena
+
+End
+
+Public Function apuestasdisponibles(t As String) As String
+
+    Dim tokens As String[]
+    Dim cadena As String
+
+    tokens = Split(t, " ")
+
+    cadena = tokens[6]
+    Return cadena
+
+End

@@ -138,6 +138,7 @@
     }
     { CheckBoxLuckiaEstadisticas CheckBox
       MoveScaled(39,3,17,4)
+      Visible = False
       Font = Font["-1"]
       Text = ("Icono estadisticas")
     }
@@ -174,11 +175,9 @@
       Text = ("Borrar datos") & "..."
       Picture = Picture["icon:/48/trash"]
     }
-    { Label1 Label
-      MoveScaled(1,11,142,25)
-      Background = &HFFFF00&
-      Text = ("Formato WEB desconocido para descargar...no admite seleccionar y copiar al portapapeles")
-      Alignment = Align.Center
+    { ButtonPegarCODERE Button
+      MoveScaled(24,11,6,7)
+      Picture = Picture["icon:/16/paste"]
     }
     Index = 4
     Text = ("GoldenPark")

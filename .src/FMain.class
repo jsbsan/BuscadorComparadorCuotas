@@ -9,6 +9,31 @@ Public Sub Form_Open()
     defineGridViewLuckiaFutbol()
     defineGridViewGoldenFutbol()
     defineGridViewBetStars()
+    defineGridViewCodere()
+
+End
+
+Public Sub defineGridViewCodere()
+
+    With GridViewCodereFutbol
+        .header = 3
+        .rows.count = 0
+        .columns.count = 9
+        .Columns[0].title = "E"
+        .Columns[1].title = "Hora"
+        .Columns[2].title = "Fecha"
+        .Columns[3].title = "Equipo1"
+        .Columns[4].title = "Cuota 1"
+        .Columns[5].title = "Empate"
+        .Columns[6].title = "Cuota X"
+        .Columns[7].title = "Equipo2"
+        .Columns[8].title = "Cuota 2"
+        .columns[7].width = 150
+        .columns[3].width = 150
+        .font.name = "Sans"
+        .font.size = 9
+
+    End With
 
 End
 
@@ -575,22 +600,22 @@ Public Sub ButtonLeerDatosWillianHill_Click()
         If DatoColumnaFecha = True Then
 
             Try GridViewWillianHillFutbol[fila - 1, 1].text = Mid$(contenido, 1, 5) 'hora
-            Try GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 10, String.InStr(contenido, " - ") - 10) 'nombre1
+            Try GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 10, String.InStr(contenido, " ₋ ") - 10) 'nombre1
 
         Else
 
             Try GridViewWillianHillFutbol[fila - 1, 2].text = Mid$(contenido, 1, 6) 'fecha
             Try GridViewWillianHillFutbol[fila - 1, 1].text = Mid$(contenido, 8, 5) 'hora
 
-            GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 17, string.InStr(contenido, " - ") - 17) 'nombre1
+            GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 17, string.InStr(contenido, " ₋ ") - 17) 'nombre1
 
         Endif
 
-        Try GridViewWillianHillFutbol[fila - 1, 7].text = String.Mid$(contenido, String.InStr(contenido, " - ") + 5, Len(contenido)) 'nombre2
+        Try GridViewWillianHillFutbol[fila - 1, 7].text = String.Mid$(contenido, String.InStr(contenido, " ₋ ") + 5, Len(contenido)) 'nombre2
 
         contador += 1
         Try GridViewWillianHillFutbol[fila - 1, 4].text = lineas[contador] 'cuota1
-
+        Try GridViewWillianHillFutbol[fila - 1, 5].text = "empate"
         contador += 1
         Try GridViewWillianHillFutbol[fila - 1, 6].text = lineas[contador] 'cuotax
         contador += 1
@@ -791,23 +816,25 @@ End
 
 Public Sub ButtonCombinarCodereMbet_Click()
 
+    Combinar(GridViewCodereFutbol)
+
     ' Dim contador As Integer
     ' Dim datosCSV As String
     '
-    ' Clipboard.Clear() 'limpio portapapeles
-    ' contador = -1
-    ' datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
-    ' While (contador < GridViewMBetFutbol.Rows.Count)
-    '     contador += 1
-    '     datosCSV &= textofila(GridViewMBetFutbol, contador)
-    ' Wend
-    ' contador = -1
-    ' While (contador < GridViewCodereFutbol.Rows.Count)
-    '     contador += 1
-    '     datosCSV &= textofila(GridViewCodereFutbol, contador)
-    ' Wend
+    '  Clipboard.Clear() 'limpio portapapeles
+    '  contador = -1
+    '  datosCSV = "Casa\tHora\tFecha\tPartido1\tEquipo1\tEmpate\tCuotaX\tEquipo2\tCuota2\n"
+    '  While (contador < GridViewMBetFutbol.Rows.Count)
+    '      contador += 1
+    '      datosCSV &= textofila(GridViewMBetFutbol, contador)
+    '  Wend
+    '  contador = -1
+    '  While (contador < GridViewCodereFutbol.Rows.Count)
+    '      contador += 1
+    '      datosCSV &= textofila(GridViewCodereFutbol, contador)
+    '  Wend
     '
-    ' Clipboard.Copy(datosCSV)
+    '  Clipboard.Copy(datosCSV)
     '
     ' Message.Info("Terminado, en el portapapeles esta el contenido de los dos gridview")
 
@@ -1230,5 +1257,62 @@ Public Sub ButtonLeerDatosPatron_Click()
         End Select
 
     Next
+
+End
+
+Public Sub ButtonPegarCODERE_Click()
+
+    PegarDAtos(TextAreaCodereFutbol)
+
+End
+
+Public Sub ButtonLeerDatosCodere_Click()
+
+    Dim lineas As String[]
+    Dim contador As Integer
+    Dim fila As Integer
+
+    ''estructura de los datos de CODERE 7/12/2019
+    '1ºeliminar las lineas que sean: Primera División,Segunda División
+
+    TextAreaCodereFutbol.text = Replace(TextAreaCodereFutbol.text, "Primera División\n", "")
+    TextAreaCodereFutbol.text = Replace(TextAreaCodereFutbol.text, "Segunda División\n", "")
+    TextAreaCodereFutbol.text = Replace(TextAreaCodereFutbol.text, "Premier League\n", "")
+    TextAreaCodereFutbol.text = Replace(TextAreaCodereFutbol.text, "1X2\n", "")
+
+    lineas = Split(TextAreaCodereFutbol.text, "\n")
+
+    contador = -1
+
+    While (contador < (lineas.Count - 1))
+        fila += 1
+
+        GridViewCodereFutbol.rows.count = fila + 2
+        Comun.limpiaFilaActual(GridViewCodereFutbol, fila)
+
+        Try GridViewCodereFutbol[fila - 1, 0].text = "0_Codere" 'indico casa
+
+        contador += 1 'equipo: Eibar-Getafe
+        contador += 1 'fecha y hora
+
+        Try GridViewCodereFutbol[fila - 1, 2].text = CODERE.ConvierteFechaCodere(lineas[contador]) 'fecha
+        Try GridViewCodereFutbol[fila - 1, 1].text = CODERE.ConvierteHORA(lineas[contador]) 'fecha
+
+        contador += 1 'MERCADO
+        contador += 1 'espacio
+        contador += 1 'EQUIPO CUOTA1 EMPATE CUOTAX EQUIPO2 CUOTA 2 NUMERO_APUESTAS
+
+        Try lineas[contador] = Codere.unirNombres(lineas[contador])
+
+        Try GridViewCodereFutbol[fila - 1, 3].text = CODERE.EQUIPO1(lineas[contador]) 'nombre1
+        Try GridViewCodereFutbol[fila - 1, 4].text = CODERE.CUOTA1(lineas[contador]) 'cuota1
+        Try GridViewCodereFutbol[fila - 1, 5].text = "Empate"
+        Try GridViewCodereFutbol[fila - 1, 6].text = CODERE.EMPATE(lineas[contador]) 'cuotax
+        Try GridViewCodereFutbol[fila - 1, 7].text = CODERE.EQUIPO2(lineas[contador]) 'nombre2
+        Try GridViewCodereFutbol[fila - 1, 8].text = CODERE.CUOTA2(lineas[contador]) 'cuota2
+        Try GridViewCodereFutbol[fila - 1, 9].text = cODERE.APUESTASDISPONIBLES(lineas[contador]) 'apuestas disponibles
+
+    Wend
+    TextAreaCodereFutbol.pos = 1
 
 End
