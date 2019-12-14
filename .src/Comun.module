@@ -65,3 +65,16 @@ Public Sub ConvierteFechaLuckia(textofecha As String) As String
     Return Upper$(textofecha)
 
 End
+
+Public Function esdia(t As String) As Boolean
+
+    Dim dias As String[] = ["Sáb.,", "Dom.,", "Lun.,", "Mar.,", "Mié.,", "Jue.,", "Vie.,"]
+    Dim a As Integer
+
+    For a = 0 To dias.count - 1
+        If InStr(t, dias[a]) <> 0 Then Return True
+    Next
+
+    Return False
+
+End

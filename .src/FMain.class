@@ -545,39 +545,45 @@ End
 
 Public Sub ButtonLeerDatosWillianHill_Click()
 
-    ''estructura de datos
-    ' Directo
-    ' 20: 15 ES Girona - Valladolid
-    ' 1.75
+    ''estructura de datos 14/12
+    ' Sáb., 14 Dic.
+    ' Ganador Del Partido
+    ' Local
+    ' Empate
+    ' Visitante
+    ' 16: 00
+    ' Real Sociedad ₋ Barcelona
+    ' 4.50
+    ' 4.20
+    ' 1.70
+    ' +369
+    ' 18: 30
+    ' Athletic Club ₋ Eibar
+    ' 1.67
     ' 3.60
-    ' 4.60
-    ' + 233 Apuestas
-    '  Estad ísticas
-    ' A ñadir a mis favoritos
-    ' 18 Ago 20: 15 ES Villarreal - Real Sociedad
-    ' 2.05
-    ' 3.30
-    ' 3.60
-    ' + 256 Apuestas
-    '  Estad ísticas
-    ' A ñadir a mis favoritos
+    ' 5.80
+    ' +354
+    ' 21: 00
     Dim lineas As String[]
     Dim contador As Integer
     Dim fila As Integer
     Dim DatoColumnafecha As Boolean
     Dim contenido As String
     Dim lineaAnalizar As String
+    Dim texto As String
+    Dim diaAnterior As String
+    Dim mesAnterior As String
 
     lineas = Split(TextAreaWillianHIll.text, "\n")
 
     contador = -1
     'Normalizo el inicio de la lectura de datos
     'comprobacion inicial de estructura espacio-ganador del partido 1 x 2"
-    If lineas[0] = "Ganador del partido" Then lineas.Add("", 0)
-
-    If lineas[0] = "" And lineas[1] = "Ganador del partido" And lineas[2] = "1" And lineas[3] = "X" And lineas[4] = "2" Then
-        lineas.Delete(0, 5)
-    Endif
+    ' ' If lineas[0] = "Ganador del partido" Then lineas.Add("", 0)
+    ' '
+    ' ' If lineas[0] = "" And lineas[1] = "Ganador del partido" And lineas[2] = "Local" And lineas[3] = "Empate" And lineas[4] = "Visitante" Then
+    ' '     lineas.Delete(0, 5)
+    ' ' Endif
 
     If lineas[0] = "" Then lineas.Delete(0, 1) 'borra linea 0, si esta vacia...
 
@@ -595,23 +601,34 @@ Public Sub ButtonLeerDatosWillianHill_Click()
 
         Endif
 
-        'leo fecha hora nombre equipo 1 y nombre equipo 2
+        'compruebo si es una linea de fecha, si es asi la asigno sino, la fecha actual en la anterior asignada
+
         contenido = lineas[contador]
-        If DatoColumnaFecha = True Then
 
-            Try GridViewWillianHillFutbol[fila - 1, 1].text = Mid$(contenido, 1, 5) 'hora
-            Try GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 10, String.InStr(contenido, " ₋ ") - 10) 'nombre1
+        If Comun.esdia(contenido) = True Then
+            diaAnterior = String.Mid$(contenido, 7, 2)
+            mesAnterior = String.Mid$(contenido, 10, 3)
+            Try GridViewWillianHillFutbol[fila - 1, 2].text = diaAnterior & " " & mesanterior 'fecha
+            contador += 1 'linea de ganador del partido
+            contador += 1 ' local
+            contador += 1 ' emapte
+            contador += 1 ' visitante
 
+            contador += 1 ' hora
         Else
-
-            Try GridViewWillianHillFutbol[fila - 1, 2].text = Mid$(contenido, 1, 6) 'fecha
-            Try GridViewWillianHillFutbol[fila - 1, 1].text = Mid$(contenido, 8, 5) 'hora
-
-            GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 17, string.InStr(contenido, " ₋ ") - 17) 'nombre1
-
+            Try GridViewWillianHillFutbol[fila - 1, 2].text = diaAnterior & " " & mesanterior 'fecha
+            ' contador += 1 ' hora
         Endif
 
-        Try GridViewWillianHillFutbol[fila - 1, 7].text = String.Mid$(contenido, String.InStr(contenido, " ₋ ") + 5, Len(contenido)) 'nombre2
+        contenido = lineas[contador]
+        Try GridViewWillianHillFutbol[fila - 1, 1].text = contenido
+
+        contador += 1 ' nombres de equipos
+        contenido = lineas[contador]
+
+        GridViewWillianHillFutbol[fila - 1, 3].text = String.Mid$(contenido, 1, string.InStr(contenido, " ₋ ")) 'nombre1
+
+        GridViewWillianHillFutbol[fila - 1, 7].text = String.Mid$(contenido, String.InStr(contenido, " ₋ ") + 3, Len(contenido)) 'nombre2
 
         contador += 1
         Try GridViewWillianHillFutbol[fila - 1, 4].text = lineas[contador] 'cuota1
@@ -631,21 +648,21 @@ Public Sub ButtonLeerDatosWillianHill_Click()
             contador -= 1
         Endif
 
-        contador += 1 ' Estadísticas
-        Try lineaAnalizar = lineas[contador]
-        If Mid$(lineaAnalizar, 1, 5) = " Esta" Or Mid$(lineaAnalizar, 1, 3) = "TV\t" Then
-            'hay estadisticas y/o linea de television
-        Else
-            contador -= 1
-        Endif
+        'contador += 1 ' Estadísticas
+        'Try lineaAnalizar = lineas[contador]
+        'If Mid$(lineaAnalizar, 1, 5) = " Esta" Or Mid$(lineaAnalizar, 1, 3) = "TV\t" Then
+        'hay estadisticas y/o linea de television
+        'Else
+        '    contador -= 1
+        'Endif
 
-        contador += 1 'Añadir a mis favoritos
-        Try lineaAnalizar = lineas[contador]
-        If Mid$(lineaAnalizar, 1, 5) = "Añad" Then
-            'hay estrella de añadir a mis favoritos
-        Else
-            contador -= 1
-        Endif
+        'contador += 1 'Añadir a mis favoritos
+        'Try lineaAnalizar = lineas[contador]
+        'If Mid$(lineaAnalizar, 1, 5) = "Añad" Then
+        '    'hay estrella de añadir a mis favoritos
+        'Else
+        '   contador -= 1
+        'Endif
 
     Wend
 
